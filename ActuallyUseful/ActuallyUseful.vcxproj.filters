@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Modules">
+      <UniqueIdentifier>{c550f659-e1ff-4837-be53-60b5832a7c6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Algo">
+      <UniqueIdentifier>{24837385-83c1-4336-a3cb-2a1c7a1019a5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Modules\Algo\Algo-Transform.ixx">
+      <Filter>Modules\Algo</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
