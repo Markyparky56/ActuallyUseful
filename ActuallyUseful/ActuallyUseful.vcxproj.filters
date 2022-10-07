@@ -7,10 +7,31 @@
     <Filter Include="Modules\Algo">
       <UniqueIdentifier>{24837385-83c1-4336-a3cb-2a1c7a1019a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\TypeTraits">
+      <UniqueIdentifier>{fdb3d489-def8-4b8b-a42d-611fc885cb1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Modules\Algo\Algo-Transform.ixx">
       <Filter>Modules\Algo</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IntegralConstant.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-ConstVolatile.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-Pointer.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-Reference.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeTraits-Types.ixx">
+      <Filter>Modules\TypeTraits</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -129,6 +129,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Modules\Algo\Algo-Transform.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-Pointer.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IntegralConstant.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-ConstVolatile.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-Reference.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits.ixx" />
+    <ClCompile Include="TypeTraits-Types.ixx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
