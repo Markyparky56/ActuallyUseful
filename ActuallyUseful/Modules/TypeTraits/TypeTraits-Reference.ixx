@@ -90,11 +90,6 @@ export namespace autl
   */
   template<typename T> using AddRValueReference_t = typename AddRValueReference<T>::Type;
 
-  template<typename T> AddRValueReference_t<T> declval() noexcept
-  {
-    static_assert(AlwaysFalse<T>, "Calling declval is ill-formed as per N4892 specifications");
-  }
-
   /*
   * Remove any references from a type
   */

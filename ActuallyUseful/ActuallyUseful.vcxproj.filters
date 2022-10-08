@@ -19,6 +19,15 @@
     <Filter Include="Modules\Concepts">
       <UniqueIdentifier>{d8d2de9c-17d2-427b-b2af-a9c371ba2717}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Functional">
+      <UniqueIdentifier>{b802a988-f2f1-4dca-bd22-9ed9f5131476}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Utility">
+      <UniqueIdentifier>{b3f0eecc-d86a-4153-bee5-8f7aad564c6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Memory">
+      <UniqueIdentifier>{80f43321-c2c5-42d6-af12-a2698553a8f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Modules\Algo\Algo-Transform.ixx">
@@ -122,6 +131,36 @@
     </ClCompile>
     <ClCompile Include="Modules\Types\Types-Arithemetic.ixx">
       <Filter>Modules\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Functional\Functional.ixx">
+      <Filter>Modules\Functional</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Functional\Functional-Invoke.ixx">
+      <Filter>Modules\Functional</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Utility\Utility.ixx">
+      <Filter>Modules\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Utility\Utility-Forward.ixx">
+      <Filter>Modules\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-Invocable.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Utility\Utility-Declval.ixx">
+      <Filter>Modules\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-Convertible.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Functional\Functional-ReferenceWrapper.ixx">
+      <Filter>Modules\Functional</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Memory\Memory.ixx">
+      <Filter>Modules\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Memory\Memory-AddressOf.ixx">
+      <Filter>Modules\Memory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

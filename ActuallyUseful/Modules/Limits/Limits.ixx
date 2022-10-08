@@ -1,3 +1,5 @@
-export module Limits;
+module;
+export module autl.limits;
 
-export void MyFunc();
+export import autl.limits.floats;
+export import autl.limits.ints;

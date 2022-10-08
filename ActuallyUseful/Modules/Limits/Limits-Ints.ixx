@@ -1,3 +1,7 @@
-export module Limits_Ints;
+module;
+export module autl.limits.ints;
 
-export void MyFunc();
+export namespace autl
+{
+
+}

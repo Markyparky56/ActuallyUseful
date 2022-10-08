@@ -1,3 +1,7 @@
-export module Limits_Floats;
+module;
+export module autl.limits.floats;
 
-export void MyFunc();
+export namespace autl
+{
+
+}

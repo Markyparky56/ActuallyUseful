@@ -6,17 +6,22 @@ export namespace autl
   /*
   * Provide type unmodified
   */
-  export template<typename T> struct TypeIdentity { using Type = T; };
+  template<typename T> struct TypeIdentity { using Type = T; };
+
+  /*
+  * Helper to access ::Type of TypeIdentity
+  */
+  template<typename T> using TypeIdentity_t = typename TypeIdentity<T>::Type;
 
   /*
   * void utility metafunction
   */
-  export template<typename...> using Void_t = void;
+  template<typename...> using Void_t = void;
 
   /*
   * False value attached to a dependent name (for static_assert)
   * Non-standard, borrowed from MSVC STL
   */
-  export template<typename> inline constexpr bool AlwaysFalse = false;
+  template<typename> inline constexpr bool AlwaysFalse = false;
 
 }
