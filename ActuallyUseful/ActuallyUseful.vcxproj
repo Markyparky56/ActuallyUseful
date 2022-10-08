@@ -140,9 +140,11 @@
     <ClCompile Include="Modules\Limits\Limits-Floats.ixx" />
     <ClCompile Include="Modules\Limits\Limits-Ints.ixx" />
     <ClCompile Include="Modules\Limits\Limits.ixx" />
+    <ClCompile Include="Modules\Types\Types-Arithemetic.ixx" />
     <ClCompile Include="Modules\Types\Types-Byte.ixx" />
     <ClCompile Include="Modules\Types\Types-Standard.ixx" />
     <ClCompile Include="Modules\Types\Types.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-EnableIf.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsFunction.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsNullPointer.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-RemoveCVRef.ixx" />
