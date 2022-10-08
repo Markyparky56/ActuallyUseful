@@ -1,7 +1,7 @@
 #include "pch.h"
 #include <vector>
 
-import autl.algo.transform;
+import autl.algo;
 
 TEST(AlgoTransformTests, TransformIfEven)
 {

@@ -4,7 +4,7 @@ export module autl.type_traits.pointer;
 import autl.type_traits.types;
 import autl.type_traits.reference;
 
-namespace autl::internal
+namespace autl::impl
 {
   // pointer type cannot be formed
   template<typename T, typename=void>
@@ -28,7 +28,7 @@ export namespace autl
   * If given type is an object type, a function type that is not cv- or ref-qualified, or a void type, provides T*
   * If unable to perform above, Type will be T
   */
-  template<typename T> struct AddPointer { using Type = internal::AddPointer<T>::Type; };
+  template<typename T> struct AddPointer { using Type = impl::AddPointer<T>::Type; };
 
   /*
   * Helper to access ::Type of AddPointer  

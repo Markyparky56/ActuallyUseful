@@ -10,6 +10,12 @@
     <Filter Include="Modules\TypeTraits">
       <UniqueIdentifier>{fdb3d489-def8-4b8b-a42d-611fc885cb1a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Types">
+      <UniqueIdentifier>{e13adc20-e393-4933-b10b-c9b0048ee87a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Limits">
+      <UniqueIdentifier>{3b609bbf-269b-401b-a88d-0daac60a409f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Modules\Algo\Algo-Transform.ixx">
@@ -32,6 +38,27 @@
     </ClCompile>
     <ClCompile Include="TypeTraits-Types.ixx">
       <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Algo\Algo.ixx">
+      <Filter>Modules\Algo</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Types\Types-Standard.ixx">
+      <Filter>Modules\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Types\Types.ixx">
+      <Filter>Modules\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Limits\Limits.ixx">
+      <Filter>Modules\Limits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Limits\Limits-Ints.ixx">
+      <Filter>Modules\Limits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Limits\Limits-Floats.ixx">
+      <Filter>Modules\Limits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Types\Types-Byte.ixx">
+      <Filter>Modules\Types</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

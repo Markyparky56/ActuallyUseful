@@ -3,7 +3,9 @@ export module autl.type_traits.integralconstant;
 
 /*
 * ActuallyUseful Type Traits
+* 
 * Integral Constant + BoolConstant
+* TrueType and FalseType aliases
 */
 export namespace autl
 {
