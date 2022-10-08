@@ -130,18 +130,36 @@
   <ItemGroup>
     <ClCompile Include="Modules\Algo\Algo-Transform.ixx" />
     <ClCompile Include="Modules\Algo\Algo.ixx" />
+    <ClCompile Include="Modules\Concepts\Concepts-Arithmetic.ixx" />
+    <ClCompile Include="Modules\Concepts\Concepts-Core.ixx" />
+    <ClCompile Include="Modules\Concepts\Concepts-FloatingPoint.ixx" />
+    <ClCompile Include="Modules\Concepts\Concepts-Integral.ixx" />
+    <ClCompile Include="Modules\Concepts\Concepts-SignedIntegral.ixx" />
+    <ClCompile Include="Modules\Concepts\Concepts.ixx" />
+    <ClCompile Include="Modules\Concepts\Concepts-UnsignedIntegral.ixx" />
     <ClCompile Include="Modules\Limits\Limits-Floats.ixx" />
     <ClCompile Include="Modules\Limits\Limits-Ints.ixx" />
     <ClCompile Include="Modules\Limits\Limits.ixx" />
     <ClCompile Include="Modules\Types\Types-Byte.ixx" />
     <ClCompile Include="Modules\Types\Types-Standard.ixx" />
     <ClCompile Include="Modules\Types\Types.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsFunction.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsNullPointer.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-RemoveCVRef.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-Decay.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsArithmetic.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-Core.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsArray.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsFloatingPoint.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsIntegral.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsSigned.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Pointer.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IntegralConstant.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-ConstVolatile.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Reference.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-RemoveExtent.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits.ixx" />
-    <ClCompile Include="TypeTraits-Types.ixx" />
+    <ClCompile Include="TypeTraits-Logical.ixx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

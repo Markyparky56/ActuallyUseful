@@ -1,6 +1,7 @@
 #include "pch.h"
 
 import autl.type_traits;
+import autl.types;
 
 TEST(TypeTraitsTests, IntegralConstant)
 {
@@ -156,6 +157,9 @@ TEST(TypeTraitsTests, IsIntegral)
   EXPECT_FALSE(autl::IsIntegral_v<float>);
   EXPECT_FALSE(autl::IsIntegral_v<double>);
   EXPECT_FALSE(autl::IsIntegral_v<long double>);
+
+  EXPECT_FALSE(autl::IsIntegral_v<autl::nullptr_t>);
+  EXPECT_FALSE(autl::IsIntegral_v<autl::byte>);
 }
 
 TEST(TypeTraitsTests, IsFloatingPoint)
@@ -180,4 +184,106 @@ TEST(TypeTraitsTests, IsFloatingPoint)
   EXPECT_TRUE(autl::IsFloatingPoint_v<float>);
   EXPECT_TRUE(autl::IsFloatingPoint_v<double>);
   EXPECT_TRUE(autl::IsFloatingPoint_v<long double>);
+
+  EXPECT_FALSE(autl::IsFloatingPoint_v<autl::nullptr_t>);
+  EXPECT_FALSE(autl::IsFloatingPoint_v<autl::byte>);
+}
+
+TEST(TypeTraitsTests, IsArithmetic)
+{
+  EXPECT_TRUE(autl::IsArithmetic_v<bool>);
+  EXPECT_TRUE(autl::IsArithmetic_v<char>);
+  EXPECT_TRUE(autl::IsArithmetic_v<signed char>);
+  EXPECT_TRUE(autl::IsArithmetic_v<unsigned char>);
+  EXPECT_TRUE(autl::IsArithmetic_v<wchar_t>);
+  EXPECT_TRUE(autl::IsArithmetic_v<char8_t>);
+  EXPECT_TRUE(autl::IsArithmetic_v<char16_t>);
+  EXPECT_TRUE(autl::IsArithmetic_v<char32_t>);
+  EXPECT_TRUE(autl::IsArithmetic_v<short>);
+  EXPECT_TRUE(autl::IsArithmetic_v<unsigned short>);
+  EXPECT_TRUE(autl::IsArithmetic_v<int>);
+  EXPECT_TRUE(autl::IsArithmetic_v<unsigned int>);
+  EXPECT_TRUE(autl::IsArithmetic_v<long>);
+  EXPECT_TRUE(autl::IsArithmetic_v<unsigned long>);
+  EXPECT_TRUE(autl::IsArithmetic_v<long long>);
+  EXPECT_TRUE(autl::IsArithmetic_v<unsigned long long>);
+
+  EXPECT_TRUE(autl::IsArithmetic_v<float>);
+  EXPECT_TRUE(autl::IsArithmetic_v<double>);
+  EXPECT_TRUE(autl::IsArithmetic_v<long double>);
+
+  EXPECT_FALSE(autl::IsArithmetic_v<autl::nullptr_t>);
+  EXPECT_FALSE(autl::IsArithmetic_v<autl::byte>);
+}
+
+TEST(TypeTraitsTests, IsSigned)
+{
+  EXPECT_TRUE(autl::IsSigned_v<float>);
+  EXPECT_TRUE(autl::IsSigned_v<double>);
+  EXPECT_TRUE(autl::IsSigned_v<char>);
+  EXPECT_TRUE(autl::IsSigned_v<short>);
+  EXPECT_TRUE(autl::IsSigned_v<int>);
+  EXPECT_TRUE(autl::IsSigned_v<long long>);
+
+  EXPECT_FALSE(autl::IsSigned_v<bool>);
+  EXPECT_FALSE(autl::IsSigned_v<unsigned char>);
+  EXPECT_FALSE(autl::IsSigned_v<unsigned short>);
+  EXPECT_FALSE(autl::IsSigned_v<unsigned int>);
+  EXPECT_FALSE(autl::IsSigned_v<unsigned long long>);
+}
+
+TEST(TypeTraitsTests, IsUnsigned)
+{
+  EXPECT_FALSE(autl::IsUnsigned_v<float>);
+  EXPECT_FALSE(autl::IsUnsigned_v<double>);
+  EXPECT_FALSE(autl::IsUnsigned_v<char>);
+  EXPECT_FALSE(autl::IsUnsigned_v<short>);
+  EXPECT_FALSE(autl::IsUnsigned_v<int>);
+  EXPECT_FALSE(autl::IsUnsigned_v<long long>);
+
+  EXPECT_TRUE(autl::IsUnsigned_v<bool>);
+  EXPECT_TRUE(autl::IsUnsigned_v<unsigned char>);
+  EXPECT_TRUE(autl::IsUnsigned_v<unsigned short>);
+  EXPECT_TRUE(autl::IsUnsigned_v<unsigned int>);
+  EXPECT_TRUE(autl::IsUnsigned_v<unsigned long long>);
+}
+
+TEST(TypeTraitsTests, RemoveRef)
+{
+  using RefType = bool&;
+  using RemovedRefType = autl::RemoveReference_t<RefType>;
+  constexpr bool isSame = autl::IsSame_v<bool, RemovedRefType>;
+  EXPECT_TRUE(isSame);
+}
+
+TEST(TypeTraitsTests, RemoveConst)
+{
+  using ConstType = const bool;
+  using RemovedConstType = autl::RemoveConst_t<ConstType>;
+  constexpr bool isSame = autl::IsSame_v<bool, RemovedConstType>;
+  EXPECT_TRUE(isSame);
+}
+
+TEST(TypeTraitsTests, RemoveVolatile)
+{
+  using VolatileType = volatile bool;
+  using RemovedVolatileType = autl::RemoveVolatile_t<VolatileType>;
+  constexpr bool isSame = autl::IsSame_v<bool, RemovedVolatileType>;
+  EXPECT_TRUE(isSame);
+}
+
+TEST(TypeTraitsTests, RemoveCV)
+{
+  using ConstVolatileType = const volatile bool;
+  using RemovedConstVolatileType = autl::RemoveCV_t<ConstVolatileType>;
+  constexpr bool isSame = autl::IsSame_v<bool, RemovedConstVolatileType>;
+  EXPECT_TRUE(isSame);
+}
+
+TEST(TypeTraitsTests, RemoveCVRef)
+{
+  using ConstVolatileRefType = const volatile bool&;
+  using RemovedConstVolatileRefType = autl::RemoveCVRef_t<ConstVolatileRefType>;
+  constexpr bool isSame = autl::IsSame_v<bool, RemovedConstVolatileRefType>;
+  EXPECT_TRUE(isSame);
 }

@@ -16,6 +16,9 @@
     <Filter Include="Modules\Limits">
       <UniqueIdentifier>{3b609bbf-269b-401b-a88d-0daac60a409f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Concepts">
+      <UniqueIdentifier>{d8d2de9c-17d2-427b-b2af-a9c371ba2717}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Modules\Algo\Algo-Transform.ixx">
@@ -36,7 +39,7 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Reference.ixx">
       <Filter>Modules\TypeTraits</Filter>
     </ClCompile>
-    <ClCompile Include="TypeTraits-Types.ixx">
+    <ClCompile Include="TypeTraits-Logical.ixx">
       <Filter>Modules\TypeTraits</Filter>
     </ClCompile>
     <ClCompile Include="Modules\Algo\Algo.ixx">
@@ -59,6 +62,60 @@
     </ClCompile>
     <ClCompile Include="Modules\Types\Types-Byte.ixx">
       <Filter>Modules\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Concepts\Concepts.ixx">
+      <Filter>Modules\Concepts</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Concepts\Concepts-Arithmetic.ixx">
+      <Filter>Modules\Concepts</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Concepts\Concepts-Core.ixx">
+      <Filter>Modules\Concepts</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-Core.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsArithmetic.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsIntegral.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsFloatingPoint.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsSigned.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Concepts\Concepts-Integral.ixx">
+      <Filter>Modules\Concepts</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Concepts\Concepts-FloatingPoint.ixx">
+      <Filter>Modules\Concepts</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Concepts\Concepts-SignedIntegral.ixx">
+      <Filter>Modules\Concepts</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Concepts\Concepts-UnsignedIntegral.ixx">
+      <Filter>Modules\Concepts</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-RemoveCVRef.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-Decay.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsArray.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-RemoveExtent.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsFunction.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsNullPointer.ixx">
+      <Filter>Modules\TypeTraits</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

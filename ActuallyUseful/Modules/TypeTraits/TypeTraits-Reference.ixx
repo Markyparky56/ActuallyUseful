@@ -1,7 +1,8 @@
 module;
 export module autl.type_traits.reference;
 
-import autl.type_traits.types;
+import autl.type_traits.core;
+import autl.type_traits.integralconstant;
 
 // Unexported internals
 namespace autl
@@ -37,6 +38,40 @@ namespace autl
 */
 export namespace autl
 {
+  /*
+  * Determines if given type is a reference, accessible via ::Value
+  */
+  template<typename T> struct IsReference : FalseType {};
+  template<typename T> struct IsReference<T&> : TrueType {};
+  template<typename T> struct IsReference<T&&> : TrueType {};
+
+  /*
+  * Helper to access ::Value of IsReference
+  */
+  template<typename T> inline constexpr bool IsReference_v = IsReference<T>::Value;
+
+  /*
+  * Determines if given type is an lvalue reference (T&)
+  */
+  template<typename T> struct IsLValueReference : FalseType {};
+  template<typename T> struct IsLValueReference<T&> : TrueType {};
+
+  /*
+  * Helper to access ::Value of IsLValueReference
+  */
+  template<typename T> inline constexpr bool IsLValueReference_v = IsLValueReference<T>::Value;
+
+  /*
+  * Determines if given type is an rvalue reference (T&&)
+  */
+  template<typename T> struct IsRValueReference : FalseType {};
+  template<typename T> struct IsRValueReference<T&&> : TrueType {};
+
+  /*
+  * Helper to access ::Value of IsRValueReference
+  */
+  template<typename T> inline constexpr bool IsRValueReference_v = IsRValueReference<T>::Value;
+
   /*
   * Add lvalue reference to given type
   */

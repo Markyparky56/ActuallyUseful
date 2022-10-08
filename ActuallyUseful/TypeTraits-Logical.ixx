@@ -1,30 +1,15 @@
 module;
-export module autl.type_traits.types;
+export module autl.type_traits.logical;
 
+import autl.type_traits.core;
 import autl.type_traits.integralconstant;
 import autl.type_traits.constvolatile;
 
 /*
-* ActuallyUseful Type Traits helpers
+* ActuallyUseful Type Traits Logical Helpers
 */
 export namespace autl
 {
-  /*
-  * Provide type unmodified
-  */
-  template<typename T> struct TypeIdentity { using Type = T; };
-
-  /*
-  * void utility metafunction
-  */
-  template<typename...> using Void_t = void;
-
-  /*
-  * False value attached to a dependent name (for static_assert)
-  * Non-standard, borrowed from MSVC STL
-  */
-  template<typename> inline constexpr bool AlwaysFalse = false;
-
   /*
   * Type conditional on first template param
   */
@@ -117,45 +102,4 @@ export namespace autl
   * Helper to determine if given type T is in list Types
   */
   template<typename T, typename... Types> inline constexpr bool IsAnyOf_v = Disjunction_v<IsSame<T, Types>...>;
-
-  /*
-  * Is given type T any of the integral (int) types
-  */
-  template<typename T> struct IsIntegral
-    : BoolConstant<IsAnyOf_v<RemoveCV_t<T>
-    , bool
-    , char, signed char, unsigned char, wchar_t, char8_t, char16_t, char32_t
-    , short, unsigned short
-    , int, unsigned int
-    , long, unsigned long
-    , long long, unsigned long long>> {};
-
-  /*
-  * Helper to access ::Value of IsIntegral
-  */
-  template<typename T> inline constexpr bool IsIntegral_v = IsIntegral<T>::Value;
-
-  /*
-  * Is given type T any of the floating point types
-  */
-  template<typename T> struct IsFloatingPoint
-    : BoolConstant<IsAnyOf_v<RemoveCV_t<T>
-    , float
-    , double, long double>> {};
-
-  /*
-  * Helper to access ::Value of IsFloatingPoint
-  */
-  template<typename T> inline constexpr bool IsFloatingPoint_v = IsFloatingPoint<T>::Value;
-
-  /*
-  * Is given type T arithmetic (integral of floating point)?
-  */
-  template<typename T> struct IsArithmetic : BoolConstant<IsIntegral_v<T> || IsFloatingPoint_v<T>> {};
-
-  /*
-  * Helper to access ::Value of IsArithmetic
-  */
-  template<typename T> inline constexpr bool IsArthimetic_v = IsArithmetic<T>::Value;
-
 }

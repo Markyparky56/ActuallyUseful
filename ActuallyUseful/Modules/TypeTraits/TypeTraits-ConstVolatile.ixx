@@ -1,6 +1,8 @@
 module;
 export module autl.type_traits.constvolatile;
 
+import autl.type_traits.integralconstant;
+
 /*
 * ActuallyUseful Type Traits
 * 
@@ -22,6 +24,17 @@ export module autl.type_traits.constvolatile;
 export namespace autl
 {
   /*
+  * Determines if given type is const
+  */
+  template<typename T> struct IsConst : FalseType {};
+  template<typename T> struct IsConst<const T> : TrueType {};
+
+  /*
+  * Helper to access ::Value of IsConst
+  */
+  template<typename T> inline constexpr bool IsConst_v = IsConst<T>::Value;
+
+  /*
   * Add const to a given type
   */
   template<typename T> struct AddConst { using Type = const T; };
@@ -41,6 +54,17 @@ export namespace autl
   * Helper to access ::Type of RemoveConst
   */
   template<typename T> using RemoveConst_t = typename RemoveConst<T>::Type;
+
+  /*
+  * Determines if given type is volatile
+  */
+  template<typename T> struct IsVolatile : FalseType {};
+  template<typename T> struct IsVolatile<volatile T> : TrueType {};
+
+  /*
+  * Helper to access ::Value of IsVolatile
+  */
+  template<typename T> inline constexpr bool IsVolatile_v = IsVolatile<T>::Value;
 
   /*
   * Add Volatile to a given type  
