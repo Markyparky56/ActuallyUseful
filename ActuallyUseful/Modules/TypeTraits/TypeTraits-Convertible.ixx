@@ -4,6 +4,7 @@ export module autl.type_traits.convertible;
 import autl.utility.declval;
 import autl.type_traits.integralconstant;
 import autl.type_traits.logical;
+import autl.type_traits.isvoid;
 
 export namespace autl
 {

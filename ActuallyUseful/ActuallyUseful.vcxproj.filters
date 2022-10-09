@@ -162,5 +162,46 @@
     <ClCompile Include="Modules\Memory\Memory-AddressOf.ixx">
       <Filter>Modules\Memory</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsVoid.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsEnum.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsUnion.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsClass.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsFundamental.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsScalar.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsObject.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsCompound.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsSpecialisation.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Modules\Functional\Invoke-DefClassMacro.h">
+      <Filter>Modules\Functional</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\Functional\Invoke-DefMemberCallMacros.h">
+      <Filter>Modules\Functional</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\Functional\Invoke-UndefClassMacro.h">
+      <Filter>Modules\Functional</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\Functional\Invoke-UndefMemberCallMacos.h">
+      <Filter>Modules\Functional</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

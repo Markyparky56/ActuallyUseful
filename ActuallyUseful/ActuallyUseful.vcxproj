@@ -102,7 +102,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -154,8 +154,16 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Convertible.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-EnableIf.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Invocable.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsClass.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsCompound.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsEnum.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsFunction.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsFundamental.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsNullPointer.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsObject.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsScalar.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsSpecialisation.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsUnion.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-RemoveCVRef.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Decay.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsArithmetic.ixx" />
@@ -169,11 +177,18 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-ConstVolatile.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Reference.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-RemoveExtent.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsVoid.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits.ixx" />
     <ClCompile Include="Modules\Utility\Utility-Declval.ixx" />
     <ClCompile Include="Modules\Utility\Utility-Forward.ixx" />
     <ClCompile Include="Modules\Utility\Utility.ixx" />
     <ClCompile Include="TypeTraits-Logical.ixx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Modules\Functional\Invoke-DefClassMacro.h" />
+    <ClInclude Include="Modules\Functional\Invoke-DefMemberCallMacros.h" />
+    <ClInclude Include="Modules\Functional\Invoke-UndefClassMacro.h" />
+    <ClInclude Include="Modules\Functional\Invoke-UndefMemberCallMacos.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

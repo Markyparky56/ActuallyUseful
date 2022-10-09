@@ -4,6 +4,7 @@ export module autl.type_traits.invocable;
 import autl.type_traits.core;
 import autl.type_traits.integralconstant;
 import autl.type_traits.logical;
+import autl.type_traits.isvoid;
 import autl.utility.declval;
 
 // Helpers in the style of MSVC because it was the most legible and sane looking

@@ -14,14 +14,8 @@ export namespace autl
   template<typename T> using TypeIdentity_t = typename TypeIdentity<T>::Type;
 
   /*
-  * void utility metafunction
-  */
-  template<typename...> using Void_t = void;
-
-  /*
   * False value attached to a dependent name (for static_assert)
   * Non-standard, borrowed from MSVC STL
   */
   template<typename> inline constexpr bool AlwaysFalse = false;
-
 }

@@ -6,6 +6,7 @@ import autl.type_traits.reference;
 import autl.type_traits.integralconstant;
 import autl.type_traits.constvolatile;
 import autl.type_traits.isfunction;
+import autl.type_traits.isvoid;
 
 namespace autl
 {

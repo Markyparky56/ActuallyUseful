@@ -88,18 +88,18 @@ export namespace autl
   template<typename L, typename R> inline constexpr bool IsDifferent_v = IsDifferent<L, R>::Value;
 
   /*
-  * Checks whether T is a void type
-  */
-  template<typename T> struct IsVoid : IsSame<void, typename RemoveCV_t<T>> {};
-
-  /*
-  * Helper to access ::Value of IsVoid
-  * Constant value corresponding to if T is a void type
-  */
-  template<typename T> inline constexpr bool IsVoid_v = IsVoid<T>::Value;
-
-  /*
   * Helper to determine if given type T is in list Types
   */
   template<typename T, typename... Types> inline constexpr bool IsAnyOf_v = Disjunction_v<IsSame<T, Types>...>;
+
+  /*
+  * Determine is type Base is derived from type Derived
+  * (Uses builtin, cppreference has a meta-method)
+  */
+  template<typename Base, typename Derived> struct IsBaseOf : BoolConstant<__is_base_of(Base, Derived)> {};
+
+  /*
+  * Helper to access ::Value of IsBaseOf
+  */
+  template<typename Base, typename Derived> inline constexpr bool IsBaseOf_v = IsBaseOf<Base, Derived>::Value;
 }

@@ -3,6 +3,7 @@ export module autl.type_traits.reference;
 
 import autl.type_traits.core;
 import autl.type_traits.integralconstant;
+import autl.type_traits.isvoid;
 
 // Unexported internals
 namespace autl
