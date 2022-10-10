@@ -157,7 +157,10 @@ namespace autl
       /*false*/ Conditional_t<IsSpecialisation_v<RemoveCVRef_t<T>, ReferenceWrapper>,
                 /*true*/  InvokerPMDRefwrap,
                 /*false*/ InvokerPMDPointer>> {};
-        
+
+  template<typename Callable, typename T, typename RemoveCVRef>
+  struct Invoker<Callable, T, RemoveCVRef, false, false>
+    : InvokerFunctor {};        
 }
 
 export namespace autl

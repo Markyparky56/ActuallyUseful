@@ -1,6 +1,7 @@
 module;
-#include <functional> // For invoke
 export module autl.algo.transform;
+
+import autl.functional.invoke;
 
 export namespace autl
 {
@@ -12,9 +13,9 @@ export namespace autl
   {
     for (auto& item : inArray)
     {
-      if (std::invoke(predicate, item))
+      if (Invoke(predicate, item))
       {
-        outArray.push_back(std::invoke(transformOp, item));
+        outArray.push_back(Invoke(transformOp, item));
       }
     }
   }
@@ -27,7 +28,7 @@ export namespace autl
   {
     for (auto& item : inArray)
     {
-      outArray.push_back(std::invoke(transformOp, item));
+      outArray.push_back(Invoke(transformOp, item));
     }
   }
 }
