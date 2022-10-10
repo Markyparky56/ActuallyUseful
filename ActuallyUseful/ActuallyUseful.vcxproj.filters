@@ -28,6 +28,9 @@
     <Filter Include="Modules\Memory">
       <UniqueIdentifier>{80f43321-c2c5-42d6-af12-a2698553a8f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Internal">
+      <UniqueIdentifier>{2963cdd6-8020-4a06-a435-efd846858ade}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Modules\Algo\Algo-Transform.ixx">
@@ -188,6 +191,9 @@
     </ClCompile>
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsSpecialisation.ixx">
       <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Internal\Internal-Invoker.h">
+      <Filter>Modules\Internal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

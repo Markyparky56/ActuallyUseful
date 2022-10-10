@@ -1,4 +1,5 @@
 module;
+#include "../Internal/Internal-Invoker.h"
 export module autl.type_traits.invocable;
 
 import autl.type_traits.core;
@@ -11,58 +12,6 @@ import autl.utility.declval;
 // I've tried to improve on that legibility a tad.
 namespace autl
 {
-  //// Forward declare ReferenceWrapper and cross our fingers it works (templates do be magic)
-  //template<typename T> class ReferenceWrapper;
-
-  //// Assuming pmf is pointer-to-member-function
-  //// and pmd is pointer-to-member-data?
-  //enum class InvokerStrategy
-  //{
-  //  Functor,
-  //  PMF_Object,
-  //  PMF_Refwrap,
-  //  PMF_Pointer,
-  //  PMD_Object,
-  //  PMD_Refwrap,
-  //  PMD_Pointer
-  //};
-
-  //struct InvokerFunctor
-  //{
-  //  static constexpr InvokerStrategy Strategy = InvokerStrategy::Functor;
-
-  //  template<typename Callable, typename... Ts>
-  //  static constexpr auto Call(Callable&& obj, Ts&&... args) noexcept(noexcept(static_cast<Callable&&>(obj)(static_cast<Ts&&>(args)...)))
-  //    -> decltype(static_cast<Callable&&>(obj)(static_cast<Ts&&>(args)...))
-  //  {
-  //    return static_cast<Callable&&>(obj)(static_cast<Ts&&>(args)...);
-  //  }
-  //};
-
-  //struct InvokerPMFObject
-  //{
-  //  static constexpr InvokerStrategy Strategy = InvokerStrategy::PMF_Object;
-
-  //  template<typename Decayed, typename T, typename... Ts>
-  //  static constexpr auto Call(Decayed pmf, T&& arg1, Ts&&... args) noexcept(noexcept((static_cast<T&&>(arg1).*pmf)(static_cast<Ts&&>(args)...)))
-  //    -> decltype((static_cast<T&&>(arg1).*pmf)(static_cast<Ts&&>(args)...))
-  //  {
-  //    return (static_cast<T&&>(arg1).*pmf)(static_cast<Ts&&>(args)...);
-  //  }
-  //};
-
-  //struct InvokerPMFRefwrap
-  //{
-  //  static constexpr InvokerStrategy Strategy = InvokerStrategy::PMD_Refwrap;
-
-  //  template<typename Decayed, typename Refwrap, typename... Ts>
-  //  static constexpr auto Call(Decayed pmf, Refwrap rw, Ts&&... args) noexcept(noexcept((rw.Get().*pmf)(static_cast<Ts&&>(args)...)))
-  //    -> decltype((rw.Get().*pmf)(static_cast<Ts&&>(args)...))
-  //  {
-  //    return (rw.Get().*pmf)(static_cast<Ts&&>(args)...);
-  //  }
-  //};
-
   template<class T> T ReturnsExactly() noexcept; // undefined dummy func
   template<typename To> void ImplicitConvertTo(To) noexcept; // undefined dummy func
 
@@ -118,7 +67,7 @@ namespace autl
 
   // Selected when Callable isn't callable with nonzero args
   template<typename Void, typename... Types>
-  struct InvokeTraitsNonzero
+  struct InvokeTraitsNonZero
   {
     using IsInvocable = FalseType;
     using IsNoThrowInvocable = FalseType;
@@ -126,8 +75,16 @@ namespace autl
     template<typename R> using IsNoThrowInvocable_r = FalseType;
   };
 
-  //template<typename Callable, typename T, typename... Ts>
-  //using DecltypeInvokeNonzero = decltype()
+  template<typename Callable, typename T, typename... Ts>
+  using DecltypeInvokeNonZero = decltype(Declval<Callable>()());
+
+  template<typename Callable, typename T, typename... Ts>
+  struct InvokeTraitsNonZero<Void_t<DecltypeInvokeNonZero<Callable, T, Ts...>>, Callable, T, Ts...>
+    : InvokeTraitsCommon<DecltypeInvokeNonZero<Callable, T, Ts...>, noexcept(Invoker<Callable, T>::Call(Declval<Callable>(), Declval<T>(), Declval<Ts>()...))> {};
+
+  template<typename Callable, typename... Args>
+  using SelectInvokeTraits = Conditional_t<sizeof...(Args) == 0, InvokeTraitsZero<void, Callable>, InvokeTraitsNonZero<void, Callable, Args...>>;
+  
 }
 
 export namespace autl

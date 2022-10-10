@@ -142,6 +142,9 @@
     <ClCompile Include="Modules\Functional\Functional-Invoke.ixx" />
     <ClCompile Include="Modules\Functional\Functional-ReferenceWrapper.ixx" />
     <ClCompile Include="Modules\Functional\Functional.ixx" />
+    <ClCompile Include="Modules\Internal\Internal-Invoker.h">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/internalPartition %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
     <ClCompile Include="Modules\Limits\Limits-Floats.ixx" />
     <ClCompile Include="Modules\Limits\Limits-Ints.ixx" />
     <ClCompile Include="Modules\Limits\Limits.ixx" />
