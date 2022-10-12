@@ -32,7 +32,7 @@ namespace autl
     using IsInvocable = TrueType;
     using IsNoThrowInvocable = BoolConstant<NoThrow>;
 
-    // True if either returns void, or Result matches Invocable result (r)
+    // True if either returns void, or Result convertible to R
     template<typename R>
     using IsInvocable_r = BoolConstant<Disjunction_v<IsVoid<R>, InvokeConvertible<Type, R>>>;
     // True if...
@@ -76,12 +76,13 @@ namespace autl
   };
 
   template<typename Callable, typename T, typename... Ts>
-  using DecltypeInvokeNonZero = decltype(Declval<Callable>()());
+  using DecltypeInvokeNonZero = decltype(Invoker<Callable, T>::Call(Declval<Callable>(), Declval<T>(), Declval<Ts>()...));
 
   template<typename Callable, typename T, typename... Ts>
   struct InvokeTraitsNonZero<Void_t<DecltypeInvokeNonZero<Callable, T, Ts...>>, Callable, T, Ts...>
     : InvokeTraitsCommon<DecltypeInvokeNonZero<Callable, T, Ts...>, noexcept(Invoker<Callable, T>::Call(Declval<Callable>(), Declval<T>(), Declval<Ts>()...))> {};
 
+  // Select InvokeTraitsZero is no additional args, NonZero if have args 
   template<typename Callable, typename... Args>
   using SelectInvokeTraits = Conditional_t<sizeof...(Args) == 0, InvokeTraitsZero<void, Callable>, InvokeTraitsNonZero<void, Callable, Args...>>;
 }
@@ -104,37 +105,37 @@ export namespace autl
   * Determines if given Callable can be invoked with given arguments
   */
   template<typename Callable, typename... Args>
-  struct IsInvocable : InvokeResult<Callable, Args...>::template IsInvocable {};
+  struct IsInvocable : SelectInvokeTraits<Callable, Args...>::template IsInvocable {};
 
   /*
   * Helper to access ::Value of IsInvocable
   */
   template<typename Callable, typename... Args>
-  inline constexpr bool IsInvocable_v = IsInvocable<Callable, Args...>::Value;
+  inline constexpr bool IsInvocable_v = SelectInvokeTraits<Callable, Args...>::IsInvocable::Value;
 
   /*
   * Determines if given Callable can be invoked with given arguments to yield a result that is convertible to type R
   */
   template<typename R, typename Callable, typename... Args>
-  struct IsInvocable_r : InvokeResult<Callable, Args...>::template IsInvocable_r{};
+  struct IsInvocable_r : SelectInvokeTraits<Callable, Args...>::template IsInvocable_r<R>{};
 
   /*
   * Helper to access ::Value of IsInvocable_r
   */
-  template<typename Callable, typename... Args>
-  inline constexpr bool IsInvocable_r_v = IsInvocable_r<Callable, Args...>::Value;
+  template<typename R, typename Callable, typename... Args>
+  inline constexpr bool IsInvocable_r_v = IsInvocable_r<R, Callable, Args...>::Value;//IsInvocable_r<R, Callable, Args...>::IsInvocable_r::Value;
 
   /*
   * Determines if given Callable can be invoked with given arguments and that the call is known to not throw any exceptions
   */
   template<typename Callable, typename... Args>
-  struct IsNoThrowInvocable : InvokeResult<Callable, Args...>::template IsNoThrowInvocable{};
+  struct IsNoThrowInvocable : SelectInvokeTraits<Callable, Args...>::template IsNoThrowInvocable{};
 
   /*
   * Helper to access ::Value of IsNoThrowInvocable
   */
   template<typename Callable, typename... Args>
-  inline constexpr bool IsNoThrowInvocable_v = IsNoThrowInvocable<Callable, Args...>::Value;
+  inline constexpr bool IsNoThrowInvocable_v = SelectInvokeTraits<Callable, Args...>::template IsNoThrowInvocable::Value;
 
   /*
   * Determines if given Callable:
@@ -143,11 +144,11 @@ export namespace autl
   * - Is known to not throw any exceptions
   */
   template<typename R, typename Callable, typename... Args>
-  struct IsNoThrowInvocable_r : InvokeResult<Callable, Args...>::template IsNoThrowInvocable_r{};
+  struct IsNoThrowInvocable_r : SelectInvokeTraits<Callable, Args...>::template IsNoThrowInvocable_r<R>{};
 
   /*
   * Helper to access ::Value of IsNoThrowInvocable_r
   */
-  template<typename Callable, typename... Args>
-  inline constexpr bool IsNoThrowInvocable_r_v = IsNoThrowInvocable_r<Callable, Args...>::Value;
+  template<typename R, typename Callable, typename... Args>
+  inline constexpr bool IsNoThrowInvocable_r_v = IsNoThrowInvocable_r<R, Callable, Args...>::Value;//IsNoThrowInvocable_r<R, Callable, Args...>::IsNoThrowInvocable_r::Value;
 }

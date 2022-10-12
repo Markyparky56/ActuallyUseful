@@ -4,7 +4,7 @@ export module autl.type_traits.isfunction;
 #if _MSC_VER
 #pragma warning(disable : 4180)
 #else
-// TODO: GCC & Clang equivalent for then not getting fussy over IsConst_v<const T>
+// TODO: GCC & Clang equivalent for them not getting fussy over IsConst_v<const T>
 #endif
 
 import autl.type_traits.integralconstant;

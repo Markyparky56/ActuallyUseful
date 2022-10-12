@@ -2,6 +2,10 @@ module;
 #include "../Internal/Internal-Invoker.h"
 export module autl.functional.invoke;
 
+import autl.type_traits.invocable;
+import autl.type_traits.isvoid;
+import autl.utility.forward;
+
 export namespace autl
 {
   /*
@@ -49,6 +53,24 @@ export namespace autl
     {
       static_assert(Invoker<Callable, T>::Strategy == InvokerStrategy::PMD_Pointer, "Unhandled InvokerStrategy");
       return (*static_cast<T&&>(arg1)).*obj;
+    }
+  }
+
+  /*
+  * Invoke callable object. Result is implicitly converted to R if R not void, or discarded otherwise
+  * Must pass IsInvocable_r_v to be considered
+  */
+  template<typename R, typename Callable, typename... Ts>
+    requires IsInvocable_r_v<R, Callable, Ts...>
+  constexpr R Invoke_r(Callable&& obj, Ts&&... args) noexcept(IsNoThrowInvocable_r_v<R, Callable, Ts...>)
+  {
+    if constexpr (IsVoid_v<R>)
+    {
+      Invoke(Forward<Callable>(obj), Forward<Ts>(args)...);
+    }
+    else
+    {
+      return Invoke(Forward<Callable>(obj), Forward<Ts>(args)...);
     }
   }
 }

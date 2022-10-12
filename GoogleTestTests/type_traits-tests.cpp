@@ -2,6 +2,7 @@
 
 import autl.type_traits;
 import autl.types;
+import autl.utility;
 
 TEST(TypeTraitsTests, IntegralConstant)
 {
@@ -286,4 +287,71 @@ TEST(TypeTraitsTests, RemoveCVRef)
   using RemovedConstVolatileRefType = autl::RemoveCVRef_t<ConstVolatileRefType>;
   constexpr bool isSame = autl::IsSame_v<bool, RemovedConstVolatileRefType>;
   EXPECT_TRUE(isSame);
+}
+
+int f();
+template<typename> struct pm_t {};
+template<typename T, typename U> struct pm_t<T U::*>
+{
+  using Type = T;
+};
+
+TEST(TypeTraitsTests, IsFunction)
+{
+  struct A { int func(); };
+
+  EXPECT_FALSE(autl::IsFunction_v<A>);
+  EXPECT_TRUE(autl::IsFunction_v<int(int)>);
+  EXPECT_TRUE(autl::IsFunction_v<decltype(f)>);
+  EXPECT_FALSE(autl::IsFunction_v<int>);
+
+  using T = pm_t<decltype(&A::func)>::Type;
+  EXPECT_TRUE(autl::IsFunction_v<T>);
+}
+
+auto invocableDummy(char) -> int (*)()
+{
+  return nullptr;
+}
+
+auto noThrowDummy(char) noexcept -> int(*)()
+{
+  return nullptr;
+}
+
+struct P {};
+auto noThrowDummy2(P, char) noexcept -> int(*)()
+{
+  return nullptr;
+}
+
+TEST(TypeTraitsTests, IsInvocable)
+{
+  EXPECT_TRUE(autl::IsInvocable_v<int()>);
+  constexpr bool test2 = autl::IsInvocable_v<int(), int>;
+  EXPECT_FALSE(test2);
+  constexpr bool test3 = autl::IsInvocable_r_v<int, int()>;
+  EXPECT_TRUE(test3);
+  constexpr bool test4 = autl::IsInvocable_r_v<int*, int()>;
+  EXPECT_FALSE(test4);
+  constexpr bool test5 = autl::IsInvocable_r_v<void, void(int), int>;
+  EXPECT_TRUE(test5);
+  constexpr bool test6 = autl::IsInvocable_r_v<void, void(int), void>;
+  EXPECT_FALSE(test6);
+  constexpr bool test7 = autl::IsInvocable_r_v<int(*)(), decltype(invocableDummy), char>;
+  EXPECT_TRUE(test7);
+  constexpr bool test8 = autl::IsInvocable_r_v<int(*)(), decltype(invocableDummy), void>;
+  EXPECT_FALSE(test8);
+  constexpr bool test9 = autl::IsNoThrowInvocable_v<decltype(noThrowDummy), char>;
+  EXPECT_TRUE(test9);
+  constexpr bool test10 = autl::IsNoThrowInvocable_v<decltype(noThrowDummy), void>;
+  EXPECT_FALSE(test10);
+  constexpr bool test11 = autl::IsNoThrowInvocable_r_v<int(*)(), decltype(noThrowDummy), char>;
+  EXPECT_TRUE(test11);
+  constexpr bool test12 = autl::IsNoThrowInvocable_r_v<float, decltype(noThrowDummy), char>;
+  EXPECT_FALSE(test12);
+  constexpr bool test13 = autl::IsNoThrowInvocable_r_v<int(*)(), decltype(noThrowDummy2), P>;
+  EXPECT_FALSE(test13);
+  constexpr bool test14 = autl::IsNoThrowInvocable_r_v<int(*)(), decltype(noThrowDummy2), char, P>;
+  EXPECT_FALSE(test14);
 }
