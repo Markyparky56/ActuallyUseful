@@ -85,7 +85,7 @@ export namespace autl
   /*
   * Bitwise NOT op
   */
-  [[nodiscard]] constexpr byte operator&(const byte b) noexcept
+  [[nodiscard]] constexpr byte operator~(const byte b) noexcept
   {
     return byte(uint8(~uint32(b)));
   }
