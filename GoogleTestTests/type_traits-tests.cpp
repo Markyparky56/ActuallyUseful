@@ -355,3 +355,26 @@ TEST(TypeTraitsTests, IsInvocable)
   constexpr bool test14 = autl::IsNoThrowInvocable_r_v<int(*)(), decltype(noThrowDummy2), char, P>;
   EXPECT_FALSE(test14);
 }
+
+TEST(TypeTraitsTests, MakeSigned)
+{
+  constexpr bool test1 = autl::IsSame_v<autl::MakeSigned<char>::Type, signed char>;
+  EXPECT_TRUE(test1);
+  constexpr bool test2 = autl::IsSame_v<autl::MakeSigned<const char>::Type, const signed char>;
+  EXPECT_TRUE(test2);
+
+  constexpr bool test3 = autl::IsSame_v<autl::MakeSigned<short>::Type, signed short>;
+  EXPECT_TRUE(test3);
+  constexpr bool test4 = autl::IsSame_v<autl::MakeSigned<const short>::Type, const signed short>;
+  EXPECT_TRUE(test4);
+
+  constexpr bool test5 = autl::IsSame_v<autl::MakeSigned<int>::Type, signed int>;
+  EXPECT_TRUE(test5);
+  constexpr bool test6 = autl::IsSame_v<autl::MakeSigned<const int>::Type, const signed int>;
+  EXPECT_TRUE(test6);
+
+  constexpr bool test7 = autl::IsSame_v<autl::MakeSigned<long long>::Type, signed long long>;
+  EXPECT_TRUE(test7);
+  constexpr bool test8 = autl::IsSame_v<autl::MakeSigned<const long long>::Type, const signed long long>;
+  EXPECT_TRUE(test8);
+}

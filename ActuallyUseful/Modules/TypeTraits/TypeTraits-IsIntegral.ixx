@@ -10,7 +10,7 @@ export namespace autl
   /*
   * Is given type T any of the integral (int) types
   */
-  export template<typename T> struct IsIntegral
+  template<typename T> struct IsIntegral
     : BoolConstant<IsAnyOf_v<RemoveCV_t<T>
     , bool
     , char, signed char, unsigned char, wchar_t, char8_t, char16_t, char32_t
@@ -22,5 +22,10 @@ export namespace autl
   /*
   * Helper to access ::Value of IsIntegral
   */
-  export template<typename T> inline constexpr bool IsIntegral_v = IsIntegral<T>::Value;
+  template<typename T> inline constexpr bool IsIntegral_v = IsIntegral<T>::Value;
+
+  /*
+  * Helper to determine is given type is a non-bool integral
+  */
+  template<typename T> inline constexpr bool IsNonBoolIntegral_v = IsIntegral_v<T> && !IsSame_v<RemoveCV_t<T>, bool>;
 }

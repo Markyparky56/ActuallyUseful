@@ -25,6 +25,7 @@ export import autl.type_traits.isspecialisation;
 export import autl.type_traits.isunion;
 export import autl.type_traits.isvoid;
 export import autl.type_traits.logical;
+export import autl.type_traits.makesigned;
 export import autl.type_traits.pointer;
 export import autl.type_traits.reference;
 export import autl.type_traits.removecvref;

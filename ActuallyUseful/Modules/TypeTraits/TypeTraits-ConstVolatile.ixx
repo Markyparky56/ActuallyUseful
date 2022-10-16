@@ -110,4 +110,38 @@ export namespace autl
   * Helper to access ::Type of RemoveCV
   */
   template<typename T> using RemoveCV_t = typename RemoveCV<T>::Type;
+
+  /*
+  * Helper to transfer cv-qualifiers from one type to another
+  */
+  template<typename T, typename U> 
+  struct TransferCV
+  {
+    using InType = T;
+    using OutType = U;
+  };
+  template<typename T, typename U>
+  struct TransferCV<const T, U>
+  {
+    using InType = T;
+    using OutType = const U;
+  };
+  template<typename T, typename U>
+  struct TransferCV<volatile T, U>
+  {
+    using InType = T;
+    using OutType = volatile U;
+  };
+  template<typename T, typename U>
+  struct TransferCV<const volatile T, U>
+  {
+    using InType = T;
+    using OutType = const volatile U;
+  };
+
+  /*
+  * Helper to access ::Type of TransferCV
+  */
+  template<typename T, typename U> using TransferCV_t = typename TransferCV<T, U>::OutType;
+
 }

@@ -195,6 +195,9 @@
     <ClCompile Include="Modules\Internal\Internal-Invoker.h">
       <Filter>Modules\Internal</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-MakeSigned.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\Functional\Invoke-DefClassMacro.h">

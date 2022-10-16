@@ -169,6 +169,7 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsScalar.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsSpecialisation.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsUnion.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-MakeSigned.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-RemoveCVRef.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Decay.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsArithmetic.ixx" />

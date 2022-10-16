@@ -102,4 +102,8 @@ export namespace autl
   * Helper to access ::Value of IsBaseOf
   */
   template<typename Base, typename Derived> inline constexpr bool IsBaseOf_v = IsBaseOf<Base, Derived>::Value;
+
+  // Select between two inputs based on a true/false template input
+  template<bool> struct Selector { template<typename T1, typename> using Apply = T1; };
+  template<> struct Selector<false> { template<typename, typename T2> using Apply = T2; };
 }
