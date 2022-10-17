@@ -22,7 +22,7 @@ export namespace autl
   template<typename T>
   [[nodiscard]] constexpr T&& Forward(RemoveReference_t<T>&& arg) noexcept
   {
-    static_assert(!IsLValueReference_v<T>, "Bad Forward Call");
+    static_assert(!IsLValueReference_v<T>, "Cannot forward an rvalue as an lvalue");
     return static_cast<T&&>(arg);
   }
 
