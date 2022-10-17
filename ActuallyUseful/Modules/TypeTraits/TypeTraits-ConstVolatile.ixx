@@ -114,34 +114,34 @@ export namespace autl
   /*
   * Helper to transfer cv-qualifiers from one type to another
   */
-  template<typename T, typename U> 
-  struct TransferCV
-  {
-    using InType = T;
-    using OutType = U;
-  };
-  template<typename T, typename U>
-  struct TransferCV<const T, U>
-  {
-    using InType = T;
-    using OutType = const U;
-  };
-  template<typename T, typename U>
-  struct TransferCV<volatile T, U>
-  {
-    using InType = T;
-    using OutType = volatile U;
-  };
-  template<typename T, typename U>
-  struct TransferCV<const volatile T, U>
-  {
-    using InType = T;
-    using OutType = const volatile U;
-  };
+  template<typename T, typename U> struct TransferCV                      { using Type = U;                 };
+  template<typename T, typename U> struct TransferCV<const T, U>          { using Type = const U;           };
+  template<typename T, typename U> struct TransferCV<volatile T, U>       { using Type = volatile U;        };
+  template<typename T, typename U> struct TransferCV<const volatile T, U> { using Type = const volatile U;  };
 
   /*
   * Helper to access ::Type of TransferCV
   */
-  template<typename T, typename U> using TransferCV_t = typename TransferCV<T, U>::OutType;
+  template<typename T, typename U> using TransferCV_t = typename TransferCV<T, U>::Type;
+
+  /*
+  * Helper to transfer cvref-qualifiers from one type to another
+  * Does not remove ref if ref present on U but not T
+  * Converts rvalues to lvalues
+  */
+  template<typename T, typename U> struct TransferCVRef           { using Type = TransferCV_t<T, U>;    };
+  template<typename T, typename U> struct TransferCVRef<T,   U& > { using Type = TransferCV_t<T, U>&;   };
+  template<typename T, typename U> struct TransferCVRef<T,   U&&> { using Type = TransferCV_t<T, U>&&;  };
+  template<typename T, typename U> struct TransferCVRef<T&,  U  > { using Type = TransferCV_t<T, U>&;   };
+  template<typename T, typename U> struct TransferCVRef<T&,  U& > { using Type = TransferCV_t<T, U>&;   };
+  template<typename T, typename U> struct TransferCVRef<T&,  U&&> { using Type = TransferCV_t<T, U>&;   };
+  template<typename T, typename U> struct TransferCVRef<T&&, U  > { using Type = TransferCV_t<T, U>&&;  };
+  template<typename T, typename U> struct TransferCVRef<T&&, U& > { using Type = TransferCV_t<T, U>&;   };
+  template<typename T, typename U> struct TransferCVRef<T&&, U&&> { using Type = TransferCV_t<T, U>&&;  };
+
+  /*
+  * Helper to access ::Type of TransferCVRef
+  */
+  template<typename T, typename U> using TransferCVRef_t = typename TransferCVRef<T, U>::Type;
 
 }
