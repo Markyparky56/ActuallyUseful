@@ -144,4 +144,15 @@ export namespace autl
   */
   template<typename T, typename U> using TransferCVRef_t = typename TransferCVRef<T, U>::Type;
 
+  /*
+  * Forms lvalue reference to const type of arg
+  * rvalue overload deleted
+  */
+  template<typename T>
+  constexpr AddConst_t<T>& AsConst(T& arg) noexcept
+  {
+    return arg;
+  }
+  template<typename T> void AsConst(const T&&) = delete;
+
 }
