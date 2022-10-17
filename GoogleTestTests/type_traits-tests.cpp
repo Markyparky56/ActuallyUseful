@@ -608,3 +608,32 @@ TEST(TypeTraitsTest, IsTrivial)
   constexpr bool test2 = autl::IsTrivial_v<B>;
   EXPECT_FALSE(test2);
 }
+
+TEST(TypeTraitsTest, IsStandardLayout)
+{
+  // Standard layout
+  struct A
+  {
+    int a;
+  };
+
+  // Non-standard layouts
+  struct B
+  {
+    int b1;
+  private:
+    int b2;
+  };
+
+  struct C
+  {
+    virtual void Foo() {}
+  };
+
+  constexpr bool test1 = autl::IsStandardLayout_v<A>;
+  EXPECT_TRUE(test1);
+  constexpr bool test2 = autl::IsStandardLayout_v<B>;
+  EXPECT_FALSE(test2);
+  constexpr bool test3 = autl::IsStandardLayout_v<C>;
+  EXPECT_FALSE(test3);
+}

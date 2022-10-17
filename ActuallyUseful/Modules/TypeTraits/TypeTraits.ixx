@@ -23,6 +23,7 @@ export import autl.type_traits.isobject;
 export import autl.type_traits.isscalar;
 export import autl.type_traits.issigned;
 export import autl.type_traits.isspecialisation;
+export import autl.type_traits.isstandardlayout;
 export import autl.type_traits.istrivial;
 export import autl.type_traits.isunion;
 export import autl.type_traits.isvoid;

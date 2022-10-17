@@ -19,6 +19,11 @@ export namespace autl
 
   /*
   * True if T is trivially copyable and trivially default constructible
+  * Trivial types are:
+  * - scalar types (arithmetic, enum, pointer, pointer-to-member)
+  * - trivial class types (trivially copyable, & has at least one default constructor that is trivial)
+  * - arrays of the above types
+  * - cv-qualified versions of the above types
   */
   template<typename T>
   struct IsTrivial : BoolConstant<IsTriviallyCopyable_v<T> && IsTriviallyDefaultConstructible_v<T>> {};
