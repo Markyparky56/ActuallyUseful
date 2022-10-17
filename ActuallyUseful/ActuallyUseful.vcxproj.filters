@@ -213,6 +213,9 @@
     <ClCompile Include="Modules\Utility\Utility-Move.ixx">
       <Filter>Modules\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-ImplicitConversion.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\Functional\Invoke-DefClassMacro.h">

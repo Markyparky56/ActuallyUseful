@@ -2,6 +2,8 @@ module;
 export module autl.utility.forward;
 
 import autl.type_traits.reference;
+import autl.type_traits.implicitconversion;
+import autl.type_traits.constvolatile;
 
 export namespace autl
 {
@@ -22,5 +24,25 @@ export namespace autl
   {
     static_assert(!IsLValueReference_v<T>, "Bad Forward Call");
     return static_cast<T&&>(arg);
+  }
+
+  /*
+  * Cast an lvalue to an rvalue of a base class
+  * NOTE: Not entirely clear on the decltype = nullptr used here, needs further research
+  * NOTE: How similar is this to std::forward_like?
+  */
+  template<typename T, typename Base,
+    decltype(ImplicitConversion<const volatile Base*>(static_cast<RemoveReference_t<T>*>(nullptr)))* = nullptr>
+  [[nodiscard]] constexpr auto ForwardAsBase(RemoveReference_t<T>& arg) noexcept
+    -> decltype(static_cast<TransferCVRef_t<T&&, Base>>(arg))
+  {
+    return static_cast<TransferCVRef_t<T&&, Base>>(arg);
+  }
+  template<typename T, typename Base,
+    decltype(ImplicitConversion<const volatile Base*>(static_cast<RemoveReference_t<T>*>(nullptr)))* = nullptr>
+  [[nodiscard]] constexpr auto ForwardAsBase(RemoveReference_t<T>&& arg) noexcept
+    -> decltype(static_cast<TransferCVRef_t<T&&, Base>>(arg))
+  {
+    return static_cast<TransferCVRef_t<T&&, Base>>(arg);
   }
 }
