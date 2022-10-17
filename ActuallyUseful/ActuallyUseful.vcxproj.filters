@@ -198,6 +198,15 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-MakeSigned.ixx">
       <Filter>Modules\TypeTraits</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-MakeUnsigned.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsTrivial.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsConstructible.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\Functional\Invoke-DefClassMacro.h">

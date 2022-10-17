@@ -1,5 +1,7 @@
 #include "pch.h"
 
+#include <type_traits>
+
 import autl.type_traits;
 import autl.types;
 import autl.utility;
@@ -377,4 +379,232 @@ TEST(TypeTraitsTests, MakeSigned)
   EXPECT_TRUE(test7);
   constexpr bool test8 = autl::IsSame_v<autl::MakeSigned<const long long>::Type, const signed long long>;
   EXPECT_TRUE(test8);
+}
+
+TEST(TypeTraitsTests, MakeUnsigned)
+{
+  constexpr bool test1 = autl::IsSame_v<autl::MakeUnsigned<char>::Type, unsigned char>;
+  EXPECT_TRUE(test1);
+  constexpr bool test2 = autl::IsSame_v<autl::MakeUnsigned<const char>::Type, const unsigned char>;
+  EXPECT_TRUE(test2);
+
+  constexpr bool test3 = autl::IsSame_v<autl::MakeUnsigned<short>::Type, unsigned short>;
+  EXPECT_TRUE(test3);
+  constexpr bool test4 = autl::IsSame_v<autl::MakeUnsigned<const short>::Type, const unsigned short>;
+  EXPECT_TRUE(test4);
+
+  constexpr bool test5 = autl::IsSame_v<autl::MakeUnsigned<int>::Type, unsigned int>;
+  EXPECT_TRUE(test5);
+  constexpr bool test6 = autl::IsSame_v<autl::MakeUnsigned<const int>::Type, const unsigned int>;
+  EXPECT_TRUE(test6);
+
+  constexpr bool test7 = autl::IsSame_v<autl::MakeUnsigned<long long>::Type, unsigned long long>;
+  EXPECT_TRUE(test7);
+  constexpr bool test8 = autl::IsSame_v<autl::MakeUnsigned<const long long>::Type, const unsigned long long>;
+  EXPECT_TRUE(test8);
+}
+
+TEST(TypeTraitsTests, Constructible)
+{
+  class Foo
+  {
+    int v1;
+    double v2;
+  public:
+    Foo(int n) : v1(n), v2() {}
+    Foo(int n, double f) noexcept : v1(n), v2(f) {}
+  };
+
+  constexpr bool test1 = autl::IsConstructible_v<Foo, int>;
+  EXPECT_TRUE(test1);
+  constexpr bool test2 = autl::IsConstructible_v<Foo, int, double>;
+  EXPECT_TRUE(test2);
+  constexpr bool test3 = autl::IsConstructible_v<Foo, int, Foo>;
+  EXPECT_FALSE(test3);
+
+  constexpr bool test4 = autl::IsTriviallyConstructible_v<Foo, int>;
+  EXPECT_FALSE(test4);
+  constexpr bool test5 = autl::IsTriviallyConstructible_v<Foo, int, double>;
+  EXPECT_FALSE(test5);
+  constexpr bool test6 = autl::IsTriviallyConstructible_v<Foo, const Foo&>;
+  EXPECT_TRUE(test6);
+
+  constexpr bool test7 = autl::IsNoThrowConstructible_v<Foo, int>;
+  EXPECT_FALSE(test7);
+  constexpr bool test8 = autl::IsNoThrowConstructible_v<Foo, int, double>;
+  EXPECT_TRUE(test8);
+  constexpr bool test9 = autl::IsNoThrowConstructible_v<Foo, const Foo&>;
+  EXPECT_TRUE(test9);
+
+}
+
+TEST(TypeTraitsTests, DefaultConstructible)
+{
+  class Foo
+  {
+    int i;
+  public:
+    // Non-trivial constructor, potentially throwing
+    Foo(int a) : i(a) {}
+    // No default constructor
+    Foo() = delete;
+  };
+
+  class Bar
+  {
+    int i;
+  public:
+    // Trivial, noexcept, default constructible
+    Bar() = default;
+  };
+
+  struct Baz
+  {
+    // Non-trivial member
+    Foo foo;
+  };
+
+  constexpr bool test1 = autl::IsDefaultConstructible_v<Foo>;
+  EXPECT_FALSE(test1);
+  constexpr bool test2 = autl::IsDefaultConstructible_v<Bar>;
+  EXPECT_TRUE(test2);
+  constexpr bool test3 = autl::IsDefaultConstructible_v<Baz>;
+  EXPECT_FALSE(test3);
+
+  constexpr bool test4 = autl::IsTriviallyDefaultConstructible_v<Foo>;
+  EXPECT_FALSE(test4);
+  constexpr bool test5 = autl::IsTriviallyDefaultConstructible_v<Bar>;
+  EXPECT_TRUE(test5);
+  constexpr bool test6 = autl::IsTriviallyDefaultConstructible_v<Baz>;
+  EXPECT_FALSE(test6);
+
+  constexpr bool test7 = autl::IsNoThrowDefaultConstructible_v<Foo>;
+  EXPECT_FALSE(test7);
+  constexpr bool test8 = autl::IsNoThrowDefaultConstructible_v<Bar>;
+  EXPECT_TRUE(test8);
+  constexpr bool test9 = autl::IsNoThrowDefaultConstructible_v<Baz>;
+  EXPECT_FALSE(test9);
+}
+
+TEST(TypeTraitsTests, CopyConstructible)
+{
+  class Foo
+  {
+    int i;
+  public:
+    // Non-trivial constructor, potentially throwing
+    Foo(int a) : i(a) {}
+    // No copy constructor
+    Foo(const Foo&) = delete;
+  };
+
+  class Bar
+  {
+    int i;
+  public:
+    // Trivial, noexcept, default constructible
+    Bar(const Bar&) = default;
+  };
+
+  struct Baz
+  {
+    // Non-trivial member
+    Foo foo;
+  };
+
+  constexpr bool test1 = autl::IsCopyConstructible_v<Foo>;
+  EXPECT_FALSE(test1);
+  constexpr bool test2 = autl::IsCopyConstructible_v<Bar>;
+  EXPECT_TRUE(test2);
+  constexpr bool test3 = autl::IsCopyConstructible_v<Baz>;
+  EXPECT_FALSE(test3);
+
+  constexpr bool test4 = autl::IsTriviallyCopyConstructible_v<Foo>;
+  EXPECT_FALSE(test4);
+  constexpr bool test5 = autl::IsTriviallyCopyConstructible_v<Bar>;
+  EXPECT_TRUE(test5);
+  constexpr bool test6 = autl::IsTriviallyCopyConstructible_v<Baz>;
+  EXPECT_FALSE(test6);
+
+  constexpr bool test7 = autl::IsNoThrowCopyConstructible_v<Foo>;
+  EXPECT_FALSE(test7);
+  constexpr bool test8 = autl::IsNoThrowCopyConstructible_v<Bar>;
+  EXPECT_TRUE(test8);
+  constexpr bool test9 = autl::IsNoThrowCopyConstructible_v<Baz>;
+  EXPECT_FALSE(test9);
+}
+
+TEST(TypeTraitsTests, MoveConstructible)
+{
+  class Foo
+  {
+    int i;
+  public:
+    // Non-trivial move constructor, potentially throwing
+    Foo(Foo&& f) : i(f.i) {}
+  };
+
+  class Bar
+  {
+    int i;
+  public:
+    // Trivial, noexcept, default move constructible
+    Bar(Bar&&) = default;
+  };
+
+  struct NoMove
+  {
+    // Define copy-constructor, preventing implicit declaration of nothrow default move constructor
+    // Still Move Constructible due to copy-construct being able to bind to rvalue arg
+    // Not trivial
+    NoMove(const NoMove&) {}
+  };
+
+  struct TrueNoMove
+  {
+    // Delete both copy and move
+    TrueNoMove(const TrueNoMove&) = delete;
+    TrueNoMove(TrueNoMove&&) = delete;
+  };
+
+  constexpr bool test1 = autl::IsMoveConstructible_v<TrueNoMove>;
+  EXPECT_FALSE(test1);
+  constexpr bool test2 = autl::IsMoveConstructible_v<Bar>;
+  EXPECT_TRUE(test2);
+  constexpr bool test3 = autl::IsMoveConstructible_v<NoMove>;
+  EXPECT_TRUE(test3);
+
+  constexpr bool test4 = autl::IsTriviallyMoveConstructible_v<Foo>;
+  EXPECT_FALSE(test4);
+  constexpr bool test5 = autl::IsTriviallyMoveConstructible_v<Bar>;
+  EXPECT_TRUE(test5);
+  constexpr bool test6 = autl::IsTriviallyMoveConstructible_v<NoMove>;
+  EXPECT_FALSE(test6);
+
+  constexpr bool test7 = autl::IsNoThrowMoveConstructible_v<Foo>;
+  EXPECT_FALSE(test7);
+  constexpr bool test8 = autl::IsNoThrowMoveConstructible_v<Bar>;
+  EXPECT_TRUE(test8);
+  constexpr bool test9 = autl::IsNoThrowMoveConstructible_v<NoMove>;
+  EXPECT_FALSE(test9);
+}
+
+TEST(TypeTraitsTest, IsTrivial)
+{
+  // Trivial
+  struct A
+  {
+    int a;
+  };
+
+  // Not trivial
+  struct B
+  {
+    B() {}
+  };
+
+  constexpr bool test1 = autl::IsTrivial_v<A>;
+  EXPECT_TRUE(test1);
+  constexpr bool test2 = autl::IsTrivial_v<B>;
+  EXPECT_FALSE(test2);
 }

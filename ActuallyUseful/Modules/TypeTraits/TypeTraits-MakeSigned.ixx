@@ -31,6 +31,7 @@ export namespace autl
   template<>
   struct MakeSigned_SizedHelper<4>
   {
+    // NOTE: This make need #if-ing if compiling with clang/gcc where long might be 64bits? Sizeof might handle that though?
     template<typename T>
     using Apply = typename Selector<IsSame_v<T, long> || IsSame_v<T, unsigned long>>::template Apply<long, int>;
   };

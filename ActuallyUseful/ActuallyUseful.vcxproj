@@ -161,6 +161,7 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Invocable.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsClass.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsCompound.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsConstructible.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsEnum.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsFunction.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsFundamental.ixx" />
@@ -168,8 +169,10 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsObject.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsScalar.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsSpecialisation.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsTrivial.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsUnion.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-MakeSigned.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-MakeUnsigned.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-RemoveCVRef.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Decay.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsArithmetic.ixx" />
