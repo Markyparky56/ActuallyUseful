@@ -589,7 +589,7 @@ TEST(TypeTraitsTests, MoveConstructible)
   EXPECT_FALSE(test9);
 }
 
-TEST(TypeTraitsTest, IsTrivial)
+TEST(TypeTraitsTests, IsTrivial)
 {
   // Trivial
   struct A
@@ -609,7 +609,7 @@ TEST(TypeTraitsTest, IsTrivial)
   EXPECT_FALSE(test2);
 }
 
-TEST(TypeTraitsTest, IsStandardLayout)
+TEST(TypeTraitsTests, IsStandardLayout)
 {
   // Standard layout
   struct A
@@ -636,4 +636,212 @@ TEST(TypeTraitsTest, IsStandardLayout)
   EXPECT_FALSE(test2);
   constexpr bool test3 = autl::IsStandardLayout_v<C>;
   EXPECT_FALSE(test3);
+}
+
+TEST(TypeTraitsTests, IsAssignable)
+{
+  // Trivial
+  struct A
+  {
+    int a;
+  };
+
+  // custom copy, no noexcept
+  struct B
+  {
+    int b;
+    B(const B& _b) { b = _b.b; }
+    B(B&& _b) { b = _b.b; }
+  };
+
+  constexpr bool test1 = autl::IsAssignable_v<int, int>;
+  EXPECT_FALSE(test1);
+  constexpr bool test2 = autl::IsAssignable_v<int&, int>;
+  EXPECT_TRUE(test2);
+  constexpr bool test3 = autl::IsAssignable_v<int, double>;
+  EXPECT_FALSE(test3);
+  constexpr bool test4 = autl::IsAssignable_v<int&, double>;
+  EXPECT_TRUE(test4);
+
+  constexpr bool test5 = autl::IsTriviallyAssignable_v<A&, A>;
+  EXPECT_TRUE(test5);
+  constexpr bool test6 = autl::IsTriviallyAssignable_v<B&, B>;
+  EXPECT_FALSE(test6);
+  constexpr bool test7 = autl::IsNoThrowAssignable_v<A&, A>;
+  EXPECT_TRUE(test7);
+  constexpr bool test8 = autl::IsNoThrowAssignable_v<B&, B>;
+  EXPECT_FALSE(test8);
+}
+
+TEST(TypeTraitsTests, IsCopyAssignable)
+{
+  // Trivial
+  struct A
+  {
+    int a;
+  };
+
+  // non-trivial copy, no noexcept
+  struct B
+  {
+    int b;
+    B& operator=(const B& _b) { b = _b.b; }
+  };
+
+  // No-copy
+  struct C
+  {
+    int c;
+    C& operator=(const C& _c) = delete;
+  };
+
+  constexpr bool test1 = autl::IsCopyAssignable_v<A>;
+  EXPECT_TRUE(test1);
+  constexpr bool test2 = autl::IsCopyAssignable_v<C>;
+  EXPECT_FALSE(test2);
+
+  constexpr bool test3 = autl::IsTriviallyCopyAssignable_v<A>;
+  EXPECT_TRUE(test3);
+  constexpr bool test4 = autl::IsTriviallyCopyAssignable_v<B>;
+  EXPECT_FALSE(test4);
+
+  constexpr bool test5 = autl::IsNoThrowCopyAssignable_v<A>;
+  EXPECT_TRUE(test5);
+  constexpr bool test6 = autl::IsNoThrowCopyAssignable_v<B>;
+  EXPECT_FALSE(test6);
+}
+
+TEST(TypeTraitsTests, IsMoveAssignable)
+{
+  // Trivial
+  struct A
+  {
+    int a;
+  };
+
+  // non-trivial move assign, no noexcept
+  struct B
+  {
+    int b;
+    B& operator=(B&& _b) { b = _b.b; }
+  };
+
+  // Deleted move assign
+  struct C
+  {
+    int c;
+    C& operator=(C&& _c) = delete;
+  };
+
+  // nothrow
+  struct D
+  {
+    int d;
+    D& operator=(D&& _d) noexcept { d = _d.d; }
+  };
+
+  constexpr bool test1 = autl::IsMoveAssignable_v<A>;
+  EXPECT_TRUE(test1);
+  constexpr bool test2 = autl::IsMoveAssignable_v<B>;
+  EXPECT_TRUE(test2);
+  constexpr bool test3 = autl::IsMoveAssignable_v<C>;
+  EXPECT_FALSE(test3);
+
+  constexpr bool test4 = autl::IsTriviallyMoveAssignable_v<A>;
+  EXPECT_TRUE(test4);
+  constexpr bool test5 = autl::IsTriviallyMoveAssignable_v<B>;
+  EXPECT_FALSE(test5);
+  
+  constexpr bool test6 = autl::IsNoThrowMoveAssignable_v<A>;
+  EXPECT_TRUE(test6);
+  constexpr bool test7 = autl::IsNoThrowMoveAssignable_v<B>;
+  EXPECT_FALSE(test7);
+  constexpr bool test8 = autl::IsNoThrowMoveAssignable_v<D>;
+  EXPECT_TRUE(test8);
+}
+
+TEST(TypeTraitsTests, Exchange)
+{
+  struct A
+  {
+    int v[4];
+  };
+
+  A a;
+  a.v[0] = 1; a.v[1] = 2; a.v[2] = 3; a.v[3] = 4;
+
+  A b;
+  autl::Exchange(b, a);
+
+  EXPECT_EQ(b.v[0], 1);
+  EXPECT_EQ(b.v[1], 2);
+  EXPECT_EQ(b.v[2], 3);
+  EXPECT_EQ(b.v[3], 4);
+}
+
+TEST(TypeTraitsTests, IsSwappable)
+{
+  // Swappable
+  struct A
+  {
+    int a;
+  };
+
+  // Not swappable, no move constructor, no move assign
+  struct B
+  {
+    int b;
+    B& operator=(B&&) = delete;
+    B(B&&) = delete;
+  };
+
+  constexpr bool test1 = autl::IsSwappable_v<A>;
+  EXPECT_TRUE(test1);
+  constexpr bool test2 = autl::IsSwappable_v<B>;
+  EXPECT_FALSE(test2);
+
+  constexpr bool test3 = autl::IsNoThrowSwappable_v<A>;
+  EXPECT_TRUE(test3);
+  constexpr bool test4 = autl::IsNoThrowSwappable_v<B>;
+  EXPECT_FALSE(test4);
+
+  constexpr bool test5 = autl::IsSwappableWith_v<int, int>;
+  EXPECT_FALSE(test5);
+  constexpr bool test6 = autl::IsSwappableWith_v<int&, int&>;
+  EXPECT_TRUE(test6);
+
+  constexpr bool test7 = autl::IsNoThrowSwappableWith_v<A&, A&>;
+  EXPECT_TRUE(test7);
+  constexpr bool test8 = autl::IsNoThrowSwappableWith_v<int&, int&>;
+  EXPECT_TRUE(test8);
+}
+
+TEST(TypeTraitsTests, Swap)
+{
+  int a = 1;
+  int b = 2;
+
+  autl::Swap(a, b);
+
+  EXPECT_EQ(a, 2);
+  EXPECT_EQ(b, 1);
+
+  struct A
+  {
+    int a, b, c;
+  };
+  A a1, a2;
+  a1.a = 10;
+  a1.b = 20;
+  a1.c = 30;
+  a2.a = -10;
+  a2.b = -20;
+  a2.c = -30;
+
+  autl::Swap(a1, a2);
+
+  EXPECT_EQ(a2.c, 30);
+  EXPECT_EQ(a1.b, -20);
+
+  // TODO: Extend once more complex structures are implemented like UniquePtr and Array that need custom swaps
 }

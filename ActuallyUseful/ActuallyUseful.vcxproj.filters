@@ -216,6 +216,18 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-ImplicitConversion.ixx">
       <Filter>Modules\TypeTraits</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsAssignable.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Utility\Utility-Exchange.ixx">
+      <Filter>Modules\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Utility\Utility-Swap.ixx">
+      <Filter>Modules\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsSwappable.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\Functional\Invoke-DefClassMacro.h">

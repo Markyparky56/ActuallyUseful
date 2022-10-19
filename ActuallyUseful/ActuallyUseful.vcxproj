@@ -160,6 +160,7 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-EnableIf.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-ImplicitConversion.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Invocable.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsAssignable.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsClass.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsCompound.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsConstructible.ixx" />
@@ -171,6 +172,7 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsScalar.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsSpecialisation.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsStandardLayout.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsSwappable.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsTrivial.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsUnion.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-MakeSigned.ixx" />
@@ -191,8 +193,10 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsVoid.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits.ixx" />
     <ClCompile Include="Modules\Utility\Utility-Declval.ixx" />
+    <ClCompile Include="Modules\Utility\Utility-Exchange.ixx" />
     <ClCompile Include="Modules\Utility\Utility-Forward.ixx" />
     <ClCompile Include="Modules\Utility\Utility-Move.ixx" />
+    <ClCompile Include="Modules\Utility\Utility-Swap.ixx" />
     <ClCompile Include="Modules\Utility\Utility.ixx" />
     <ClCompile Include="TypeTraits-Logical.ixx" />
   </ItemGroup>
