@@ -11,6 +11,9 @@
     <ClCompile Include="functional-tests.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="utility-tests.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

@@ -45,6 +45,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="type_traits-tests.cpp" />
+    <ClCompile Include="utility-tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ActuallyUseful\ActuallyUseful.vcxproj">

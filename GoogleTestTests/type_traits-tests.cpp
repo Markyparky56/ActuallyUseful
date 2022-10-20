@@ -1,7 +1,5 @@
 #include "pch.h"
 
-#include <type_traits>
-
 import autl.type_traits;
 import autl.types;
 import autl.utility;
@@ -781,24 +779,7 @@ TEST(TypeTraitsTests, IsMoveAssignable)
   EXPECT_TRUE(test8);
 }
 
-TEST(TypeTraitsTests, Exchange)
-{
-  struct A
-  {
-    int v[4];
-  };
 
-  A a;
-  a.v[0] = 1; a.v[1] = 2; a.v[2] = 3; a.v[3] = 4;
-
-  A b;
-  autl::Exchange(b, a);
-
-  EXPECT_EQ(b.v[0], 1);
-  EXPECT_EQ(b.v[1], 2);
-  EXPECT_EQ(b.v[2], 3);
-  EXPECT_EQ(b.v[3], 4);
-}
 
 TEST(TypeTraitsTests, IsSwappable)
 {
@@ -835,45 +816,4 @@ TEST(TypeTraitsTests, IsSwappable)
   EXPECT_TRUE(test7);
   constexpr bool test8 = autl::IsNoThrowSwappableWith_v<int&, int&>;
   EXPECT_TRUE(test8);
-}
-
-TEST(TypeTraitsTests, Swap)
-{
-  int a = 1;
-  int b = 2;
-
-  autl::Swap(a, b);
-
-  EXPECT_EQ(a, 2);
-  EXPECT_EQ(b, 1);
-
-  struct A
-  {
-    int a, b, c;
-  };
-  A a1, a2;
-  a1.a = 10;
-  a1.b = 20;
-  a1.c = 30;
-  a2.a = -10;
-  a2.b = -20;
-  a2.c = -30;
-
-  autl::Swap(a1, a2);
-
-  EXPECT_EQ(a2.c, 30);
-  EXPECT_EQ(a1.b, -20);
-
-  // TODO: Extend once more complex structures are implemented like UniquePtr and Array that need custom swaps
-}
-
-TEST(TypeTraitsTests, SwapArrays)
-{
-  int a[] = { 1,2,3,4 };
-  int b[] = { 5,6,7,8 };
-
-  autl::Swap(a, b);
-
-  EXPECT_EQ(a[0], 5);
-  EXPECT_EQ(b[3], 4);
 }
