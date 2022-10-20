@@ -51,9 +51,6 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Reference.ixx">
       <Filter>Modules\TypeTraits</Filter>
     </ClCompile>
-    <ClCompile Include="TypeTraits-Logical.ixx">
-      <Filter>Modules\TypeTraits</Filter>
-    </ClCompile>
     <ClCompile Include="Modules\Algo\Algo.ixx">
       <Filter>Modules\Algo</Filter>
     </ClCompile>
@@ -226,6 +223,9 @@
       <Filter>Modules\Utility</Filter>
     </ClCompile>
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsSwappable.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-Logical.ixx">
       <Filter>Modules\TypeTraits</Filter>
     </ClCompile>
   </ItemGroup>

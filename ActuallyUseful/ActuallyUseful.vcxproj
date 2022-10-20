@@ -175,6 +175,7 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsSwappable.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsTrivial.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsUnion.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-Logical.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-MakeSigned.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-MakeUnsigned.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-RemoveCVRef.ixx" />
@@ -198,7 +199,6 @@
     <ClCompile Include="Modules\Utility\Utility-Move.ixx" />
     <ClCompile Include="Modules\Utility\Utility-Swap.ixx" />
     <ClCompile Include="Modules\Utility\Utility.ixx" />
-    <ClCompile Include="TypeTraits-Logical.ixx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\Functional\Invoke-DefClassMacro.h" />
