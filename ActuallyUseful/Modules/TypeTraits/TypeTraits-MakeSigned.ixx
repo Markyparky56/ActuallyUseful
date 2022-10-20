@@ -10,40 +10,39 @@ import autl.type_traits.constvolatile;
 export namespace autl
 {
   // Select type by size
-  template<size_t>
+  template<typename T, size_t>
   struct MakeSigned_SizedHelper;
 
   // Char/Byte
-  template<>
-  struct MakeSigned_SizedHelper<1>
+  template<typename T>
+  struct MakeSigned_SizedHelper<T, 1>
   {
-    template<typename> using Apply = signed char;
+    using Type = signed char;
   };
 
   // Short
-  template<>
-  struct MakeSigned_SizedHelper<2>
+  template<typename T>
+  struct MakeSigned_SizedHelper<T, 2>
   {
-    template<typename> using Apply = short;
+    using Type = short;
   };
 
   // Long/Int
-  template<>
-  struct MakeSigned_SizedHelper<4>
+  template<typename T>
+  struct MakeSigned_SizedHelper<T, 4>
   {
     // NOTE: This make need #if-ing if compiling with clang/gcc where long might be 64bits? Sizeof might handle that though?
-    template<typename T>
-    using Apply = typename Selector<IsSame_v<T, long> || IsSame_v<T, unsigned long>>::template Apply<long, int>;
+    using Type = typename Conditional_t<IsSame_v<T, long> || IsSame_v<T, unsigned long>, long, int>;
   };
 
   // Long Long
-  template<>
-  struct MakeSigned_SizedHelper<8>
+  template<typename T>
+  struct MakeSigned_SizedHelper<T, 8>
   {
-    template<typename> using Apply = long long;
+    using Type = long long;
   };
 
-  template<typename T> using MakeSignedHelper = typename MakeSigned_SizedHelper<sizeof(T)>::template Apply<T>;
+  template<typename T> using MakeSignedHelper = typename MakeSigned_SizedHelper<T, sizeof(T)>::Type;
 }
 
 export namespace autl

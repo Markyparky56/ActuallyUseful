@@ -97,6 +97,13 @@ TEST(TypeTraitsTests, Disjunction)
 
   constexpr bool isInt = autl::Disjunction_v<autl::IsSame<int, bool>, autl::IsSame<int, int>>;
   EXPECT_TRUE(isInt);
+
+  // Test aliases
+  constexpr bool isBool2 = autl::OR_v<autl::IsSame<bool, bool>>;
+  EXPECT_TRUE(isBool);
+
+  constexpr bool isInt2 = autl::OR_v<autl::IsSame<int, bool>, autl::IsSame<int, int>>;
+  EXPECT_TRUE(isInt);
 }
 
 TEST(TypeTraitsTests, Conjunction)
@@ -105,6 +112,13 @@ TEST(TypeTraitsTests, Conjunction)
   EXPECT_TRUE(noneBool);
 
   constexpr bool falseNoneBool = autl::Conjunction_v<autl::IsDifferent<bool, int>, autl::IsDifferent<bool, char>, autl::IsDifferent<bool, bool>, autl::IsDifferent<bool, float>>;
+  EXPECT_FALSE(falseNoneBool);
+
+  // Test aliases
+  constexpr bool noneBool2 = autl::AND_v<autl::IsDifferent<bool, int>, autl::IsDifferent<bool, char>, autl::IsDifferent<bool, long long>, autl::IsDifferent<bool, float>>;
+  EXPECT_TRUE(noneBool);
+
+  constexpr bool falseNoneBool2 = autl::AND_v<autl::IsDifferent<bool, int>, autl::IsDifferent<bool, char>, autl::IsDifferent<bool, bool>, autl::IsDifferent<bool, float>>;
   EXPECT_FALSE(falseNoneBool);
 }
 
@@ -116,6 +130,13 @@ TEST(TypeTraitsTests, Negation)
 
   using falseThing = autl::IsSame<float, double>;
   constexpr bool negFalseThing = autl::Negation_v<falseThing>;
+  EXPECT_TRUE(negFalseThing);
+
+  // Test aliases
+  constexpr bool negTrueThing2 = autl::NOT_v<trueThing>;
+  EXPECT_FALSE(negTrueThing);
+
+  constexpr bool negFalseThing2 = autl::NOT_v<falseThing>;
   EXPECT_TRUE(negFalseThing);
 }
 
@@ -844,4 +865,15 @@ TEST(TypeTraitsTests, Swap)
   EXPECT_EQ(a1.b, -20);
 
   // TODO: Extend once more complex structures are implemented like UniquePtr and Array that need custom swaps
+}
+
+TEST(TypeTraitsTests, SwapArrays)
+{
+  int a[] = { 1,2,3,4 };
+  int b[] = { 5,6,7,8 };
+
+  autl::Swap(a, b);
+
+  EXPECT_EQ(a[0], 5);
+  EXPECT_EQ(b[3], 4);
 }

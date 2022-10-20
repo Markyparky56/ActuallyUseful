@@ -10,39 +10,38 @@ import autl.type_traits.constvolatile;
 export namespace autl
 {
   // Select type by size
-  template<size_t>
+  template<typename T, size_t>
   struct MakeUnsigned_SizedHelper;
 
   // Char/Byte
-  template<>
-  struct MakeUnsigned_SizedHelper<1>
+  template<typename T>
+  struct MakeUnsigned_SizedHelper<T, 1>
   {
-    template<typename> using Apply = unsigned char;
+    using Type = unsigned char;
   };
 
   // Short
-  template<>
-  struct MakeUnsigned_SizedHelper<2>
+  template<typename T>
+  struct MakeUnsigned_SizedHelper<T, 2>
   {
-    template<typename> using Apply = unsigned short;
+    using Type = unsigned short;
   };
 
   // Long/Int
-  template<>
-  struct MakeUnsigned_SizedHelper<4>
+  template<typename T>
+  struct MakeUnsigned_SizedHelper<T, 4>
   {
-    template<typename T>
-    using Apply = typename Selector<IsSame_v<T, long> || IsSame_v<T, signed long>>::template Apply<unsigned long, unsigned int>;
+    using Type = typename Conditional_t<IsSame_v<T, long> || IsSame_v<T, signed long>, unsigned long, unsigned int>;
   };
 
   // Long Long
-  template<>
-  struct MakeUnsigned_SizedHelper<8>
+  template<typename T>
+  struct MakeUnsigned_SizedHelper<T, 8>
   {
-    template<typename> using Apply = unsigned long long;
+    using Type = unsigned long long;
   };
 
-  template<typename T> using MakeUnsignedHelper = typename MakeUnsigned_SizedHelper<sizeof(T)>::template Apply<T>;
+  template<typename T> using MakeUnsignedHelper = typename MakeUnsigned_SizedHelper<T, sizeof(T)>::Type;
 }
 
 export namespace autl
