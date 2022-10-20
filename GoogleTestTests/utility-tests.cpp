@@ -70,3 +70,30 @@ TEST(UtilityTests, BitCast)
   static_assert(autl::BitCast<double>(u64v) == f64v); // round-trip without loss of data
   EXPECT_EQ(autl::BitCast<double>(u64v), f64v);
 }
+
+TEST(UtilityTests, AlignedBytes)
+{
+  struct A
+  {
+    int i;
+    bool b;
+    float f;
+  };
+  constexpr int aSize = sizeof(A);
+
+  autl::TypeCompatibleBytes<A> aBytes;
+  constexpr int aBytesSize = sizeof(autl::TypeCompatibleBytes<A>);
+
+  EXPECT_EQ(aSize, aBytesSize);
+
+  A* aBytesPtr = aBytes.GetTypedPtr();
+  aBytesPtr->i = 10;
+  aBytesPtr->b = true;
+  aBytesPtr->f = 4242.f;
+
+  A copiedA = *aBytesPtr;
+
+  EXPECT_EQ(copiedA.i, 10);
+  EXPECT_EQ(copiedA.b, true);
+  EXPECT_EQ(copiedA.f, 4242.f);
+}

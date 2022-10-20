@@ -231,6 +231,9 @@
     <ClCompile Include="Modules\Utility\Utility-BitCast.ixx">
       <Filter>Modules\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\Utility\Utility-AlignedBytes.ixx">
+      <Filter>Modules\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\Functional\Invoke-DefClassMacro.h">
