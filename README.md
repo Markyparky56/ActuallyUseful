@@ -1,6 +1,6 @@
 # The _ActuallyUseful_ Template Library
 
-<sub><sup><sub><sup>Did someone say feature creep?</sup></sub></sup></sub>
+<sup><sub><sup>Did someone say feature creep?</sup></sub></sup>
 
 The STL is great. _But..._ Us coders are fussy folks. I'm eternally bugged by its use of snake_case, everything being lowercase, and all the documentation being _not there_. _cppreference_ is a fantastic resource, but having to dip out to the web to work out what a function or structure is doing breaks my flow. 
 
