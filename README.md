@@ -23,8 +23,9 @@ For the moment, this project is solely compatible with Windows and MSVC. I would
 _Kinda sorta maybe_
 
 This library will grow organically. My time is limited and I have other hobbies. For now, my aim is to implement (in no particular order)
+
 - Various `algo` sub-modules, pulling from those found in `<algorithm>` and any interesting extensions/additions that Unreal Engine might have that look useful.
-- Invoke, as a result of above
+- Invoke, out of necessity for the above algorithms
 - A raft of useful `utility` sub-modules like `BitCast` and `AlignedBytes`
 - A mostly (or fully) realised `type_traits` sub-module, which is proving to be the cornerstone for the rest of the library. Whodathunk templates need so many helpers?
 - A `types` sub-module and accompany `limits` sub-module for standard type names and numeric limits for them
@@ -55,6 +56,12 @@ This library will grow organically. My time is limited and I have other hobbies.
   - xoshiro / xoroshiro generators from https://prng.di.unimi.it/
   - Rand Range Helpers + Cone Helpers
 - Explore replacement memory functions like `memcpy` and how one might conditionally integrate replacement low-level allocators such as `mimalloc` or `dlmalloc`
+
+Some stretch goals that may end up being moved to a secondary "ToolBox" library which builds off this one:
+
+- Delegates, integrating with smart pointers
+- A centralised Message Broadcast system for when delegates create too much inflexible coupling
+- A Push-Model Message system for when delegates go the wrong way and broadcast messages are wasteful
 
 Safe to say, this code is reminiscent of other STLs, but makes no attempt to be fully conformant or include every niche feature on offer. As the name suggests, it seeks to be useful, and if it succeeds in providing the tools I need to do other fun things, it'll have been worth it. As long as IntelliSense holds up.
 
