@@ -87,7 +87,7 @@ Unreal has its own License/EULA that is surprisingly permissive when it comes to
 
 > Code is copyrighted, but knowledge is free!
 
-As a rule of thumb I don't copy-paste code. That's not useful to facilitate learning and is blatant copying. I'd like to hope whatever I'm doing produces a result different enough to convey this is something uniquely mine. Neither MSVC, libcxx, nor Unreal have formatted their source as C++ Modules, nor rewritten their code to use C++20 features. Still, there is no denying this code has its roots in theirs.
+As a matter of principle, I don't copy-paste code. It's not useful to facilitate learning and is blatant copying. I'd like to hope whatever I'm doing produces a result different enough to convey this is something uniquely mine. Neither MSVC, libcxx, nor Unreal have formatted their source as C++ Modules, nor rewritten their code to use C++20 features. Still, there is no denying this code has its roots in theirs.
 
 However the chips fall, whether it'll be Tim Sweeny beating down my door, or someone from Microsoft, or the LLVM Foundation, I'm not doing this with the intent to misrepresent the origin or inspiration for this project and its source code. Indeed, using Unreal Engine for so long drove me to attempt this project.
 
