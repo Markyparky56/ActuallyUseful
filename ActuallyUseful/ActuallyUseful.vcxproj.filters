@@ -234,6 +234,9 @@
     <ClCompile Include="Modules\Utility\Utility-AlignedBytes.ixx">
       <Filter>Modules\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsDestructible.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\Functional\Invoke-DefClassMacro.h">

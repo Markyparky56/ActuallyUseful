@@ -14,6 +14,7 @@ export import autl.type_traits.isassignable;
 export import autl.type_traits.isclass;
 export import autl.type_traits.iscompound;
 export import autl.type_traits.isconstructible;
+export import autl.type_traits.isdestructible;
 export import autl.type_traits.isenum;
 export import autl.type_traits.isfloatingpoint;
 export import autl.type_traits.isfunction;

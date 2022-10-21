@@ -779,8 +779,6 @@ TEST(TypeTraitsTests, IsMoveAssignable)
   EXPECT_TRUE(test8);
 }
 
-
-
 TEST(TypeTraitsTests, IsSwappable)
 {
   // Swappable
@@ -816,4 +814,46 @@ TEST(TypeTraitsTests, IsSwappable)
   EXPECT_TRUE(test7);
   constexpr bool test8 = autl::IsNoThrowSwappableWith_v<int&, int&>;
   EXPECT_TRUE(test8);
+}
+
+TEST(TypeTraitsTests, IsDestructible)
+{
+  // Destructible, nothrow, not trivial
+  struct A
+  {
+    ~A() noexcept {}
+  };
+
+  // Destructible, nothrow, trivial
+  struct B
+  {
+    ~B() = default;
+  };
+
+  // Deleted constructor, impossible to create but not UB
+  struct C
+  {
+    ~C() = delete;
+  };
+
+  constexpr bool test1 = autl::IsDestructible_v<A>;
+  EXPECT_TRUE(test1);
+  constexpr bool test2 = autl::IsDestructible_v<B>;
+  EXPECT_TRUE(test2);
+  constexpr bool test3 = autl::IsDestructible_v<C>;
+  EXPECT_FALSE(test3);
+
+  constexpr bool test4 = autl::IsTriviallyDestructible_v<A>;
+  EXPECT_FALSE(test4);
+  constexpr bool test5 = autl::IsTriviallyDestructible_v<B>;
+  EXPECT_TRUE(test5);
+  constexpr bool test6 = autl::IsTriviallyDestructible_v<C>;
+  EXPECT_FALSE(test6);
+
+  constexpr bool test7 = autl::IsNoThrowDestructible_v<A>;
+  EXPECT_TRUE(test7);
+  constexpr bool test8 = autl::IsNoThrowDestructible_v<B>;
+  EXPECT_TRUE(test8);
+  constexpr bool test9 = autl::IsNoThrowDestructible_v<C>;
+  EXPECT_FALSE(test9);
 }
