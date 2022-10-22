@@ -6,6 +6,7 @@ export import autl.type_traits.convertible;
 export import autl.type_traits.core;
 export import autl.type_traits.decay;
 export import autl.type_traits.enableif;
+export import autl.type_traits.hasuniqueobjectrepresentations;
 export import autl.type_traits.integralconstant;
 export import autl.type_traits.invocable;
 export import autl.type_traits.isarithmetic;

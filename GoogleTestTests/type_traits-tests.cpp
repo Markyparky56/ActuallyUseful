@@ -1,8 +1,15 @@
 #include "pch.h"
 
+// Doesn't help
+//#if __INTELLISENSE__
+//#include "../ActuallyUseful/Modules/TypeTraits/TypeTraits.ixx"
+//#include "../ActuallyUseful/Modules/Types/Types.ixx"
+//#include "../ActuallyUseful/Modules/Utility/Utility.ixx"
+//#else
 import autl.type_traits;
 import autl.types;
 import autl.utility;
+//#endif
 
 TEST(TypeTraitsTests, IntegralConstant)
 {
@@ -856,4 +863,27 @@ TEST(TypeTraitsTests, IsDestructible)
   EXPECT_TRUE(test8);
   constexpr bool test9 = autl::IsNoThrowDestructible_v<C>;
   EXPECT_FALSE(test9);
+}
+
+TEST(TypeTraitsTests, HasUniqueObjectRepresentations)
+{
+  // Should be unique due to no internal padding
+  struct A
+  {
+    int a;
+    int b;
+  };
+
+  // ints require 4-byte alignment therefore inserting 3 bytes of "nothing" between c and i invalidates
+  // the value vs object equality
+  struct B
+  {
+    char c;
+    int i;
+  };
+
+  constexpr bool test1 = autl::HasUniqueObjectRepresentations_v<A>;
+  EXPECT_TRUE(test1);
+  constexpr bool test2 = autl::HasUniqueObjectRepresentations_v<B>;
+  EXPECT_FALSE(test2);
 }

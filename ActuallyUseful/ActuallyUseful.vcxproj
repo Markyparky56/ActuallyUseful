@@ -158,6 +158,7 @@
     <ClCompile Include="Modules\Types\Types.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Convertible.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-EnableIf.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-HasUniqueObjectRepresentations.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-ImplicitConversion.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Invocable.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsAssignable.ixx" />
