@@ -204,12 +204,6 @@
     <ClCompile Include="Modules\Utility\Utility-Swap.ixx" />
     <ClCompile Include="Modules\Utility\Utility.ixx" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Modules\Functional\Invoke-DefClassMacro.h" />
-    <ClInclude Include="Modules\Functional\Invoke-DefMemberCallMacros.h" />
-    <ClInclude Include="Modules\Functional\Invoke-UndefClassMacro.h" />
-    <ClInclude Include="Modules\Functional\Invoke-UndefMemberCallMacos.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

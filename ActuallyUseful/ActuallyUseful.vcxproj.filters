@@ -241,18 +241,4 @@
       <Filter>Modules\TypeTraits</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Modules\Functional\Invoke-DefClassMacro.h">
-      <Filter>Modules\Functional</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\Functional\Invoke-DefMemberCallMacros.h">
-      <Filter>Modules\Functional</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\Functional\Invoke-UndefClassMacro.h">
-      <Filter>Modules\Functional</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\Functional\Invoke-UndefMemberCallMacos.h">
-      <Filter>Modules\Functional</Filter>
-    </ClInclude>
-  </ItemGroup>
 </Project>
