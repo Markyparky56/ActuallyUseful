@@ -107,6 +107,9 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
+      <TranslateIncludes>true</TranslateIncludes>
+      <AdditionalIncludeDirectories>$(ProjectDir)\Modules\Internal\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -123,6 +126,9 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
+      <TranslateIncludes>true</TranslateIncludes>
+      <AdditionalIncludeDirectories>$(ProjectDir)\Modules\Internal\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,6 +152,8 @@
     <ClCompile Include="Modules\Functional\Functional.ixx" />
     <ClCompile Include="Modules\Internal\Internal-Invoker.h">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/internalPartition %(AdditionalOptions)</AdditionalOptions>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsHeaderUnit</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsHeaderUnit</CompileAs>
     </ClCompile>
     <ClCompile Include="Modules\Limits\Limits-Floats.ixx" />
     <ClCompile Include="Modules\Limits\Limits-Ints.ixx" />

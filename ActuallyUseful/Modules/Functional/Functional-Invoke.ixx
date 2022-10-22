@@ -1,7 +1,7 @@
 module;
-#include "../Internal/Internal-Invoker.h"
 export module autl.functional.invoke;
 
+import "Internal-Invoker.h";
 import autl.type_traits.invocable;
 import autl.type_traits.isvoid;
 import autl.utility.forward;

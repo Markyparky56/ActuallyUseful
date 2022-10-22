@@ -1,7 +1,7 @@
 module;
-#include "../Internal/Internal-Invoker.h"
 export module autl.type_traits.invocable;
 
+import "Internal-Invoker.h";
 import autl.type_traits.core;
 import autl.type_traits.integralconstant;
 import autl.type_traits.logical;
