@@ -1,3 +1,4 @@
+#pragma once
 // The contents of this file are shared between Function-Invoke and TypeTraits-Invocable
 // I couldn't find a way to cleanly share these purely internal structures without leaking them as exports
 // Perhaps there's something that can be done with internal module partitions but those might interfere with 
