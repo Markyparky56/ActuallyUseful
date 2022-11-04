@@ -11,6 +11,10 @@ import autl.types;
 import autl.utility;
 //#endif
 
+//using namespace autl;
+//autl::sub::
+//ns2::
+
 TEST(TypeTraitsTests, IntegralConstant)
 {
   using int0 = autl::IntergralConstant<int, 0>;
@@ -887,5 +891,195 @@ TEST(TypeTraitsTests, HasUniqueObjectRepresentations)
   constexpr bool test2 = autl::HasUniqueObjectRepresentations_v<B>;
   EXPECT_FALSE(test2);
   
-  //autl::
+  //autl::HasUniqueObjectRepresentations<A>::
+  //autl::sub::MyFunc();
+  //autl::sub::MyFunc
+
+  //using namespace autl;
+  //HasUniqueObjectRepresentations<A>
+
+  
+}
+
+struct Empty_B
+{
+  static int b;
+};
+union Empty_U {};
+
+TEST(TypeTraitsTests, IsEmpty)
+{
+  // Empty structs
+  struct A
+  {
+  };
+  struct C
+  {
+    [[no_unique_address]] Empty_U u;
+  };
+  struct C2
+  {
+    [[msvc::no_unique_address]] Empty_U u;
+  };
+  struct D
+  {
+    int : 0;
+  };
+
+  // Non-empty structs
+  struct E
+  {
+    virtual ~E() {}
+  };
+  struct F : E
+  {
+  };
+  struct G
+  {
+    int g;
+  };
+  struct H : G
+  {
+  };
+
+  EXPECT_TRUE(autl::IsEmpty_v<A>);
+  EXPECT_TRUE(autl::IsEmpty_v<Empty_B>);
+
+  // These report False, CPP Reference says it is ABI-dependent
+  //EXPECT_TRUE(autl::IsEmpty_v<C>);
+  //EXPECT_TRUE(autl::IsEmpty_v<C2>);
+  // This reports False, CPP Reference says it is allowed by the standard, but MSVC seems to err
+  //EXPECT_TRUE(autl::IsEmpty_v<D>);
+
+  EXPECT_FALSE(autl::IsEmpty_v<E>);
+  EXPECT_FALSE(autl::IsEmpty_v<F>);
+  EXPECT_FALSE(autl::IsEmpty_v<G>);
+  EXPECT_FALSE(autl::IsEmpty_v<H>);
+}
+
+TEST(TypeTraitsTests, IsPolymorphic)
+{
+  // Not polymorphic
+  struct A
+  {
+    int a;
+  };
+
+  // Polymorphics
+  struct B
+  {
+    virtual void b() {}
+  };
+  struct C : B
+  {
+  };
+  struct D
+  {
+    virtual ~D() = default;
+  };
+
+  EXPECT_FALSE(autl::IsPolymorphic_v<A>);
+
+  EXPECT_TRUE(autl::IsPolymorphic_v<B>);
+  EXPECT_TRUE(autl::IsPolymorphic_v<C>);
+  EXPECT_TRUE(autl::IsPolymorphic_v<D>);
+}
+
+TEST(TypeTraitsTests, IsAbstract)
+{
+  // Not abstract
+  struct A
+  {
+    int a;
+  };
+  struct B
+  {
+    virtual ~B() = default;
+  };
+
+  // Abstract
+  struct C
+  {
+    virtual void foo() = 0;
+  };
+  struct D : C
+  {
+  };
+
+  // Not abstract
+  struct E : public C
+  {
+    virtual void foo() override {}
+  };
+
+  EXPECT_FALSE(autl::IsAbstract_v<A>);
+  EXPECT_FALSE(autl::IsAbstract_v<B>);
+
+  EXPECT_TRUE(autl::IsAbstract_v<C>);
+  EXPECT_TRUE(autl::IsAbstract_v<D>);
+
+  EXPECT_FALSE(autl::IsAbstract_v<E>);
+}
+
+TEST(TypeTraitsTests, IsFinal)
+{
+  struct A
+  {
+  };
+  struct B final
+  {
+  };
+
+  EXPECT_FALSE(autl::IsFinal_v<A>);
+  EXPECT_TRUE(autl::IsFinal_v<B>);
+}
+
+TEST(TypeTraitsTests, IsAggregate)
+{
+  // Aggregate
+  struct A
+  {
+    int a;
+  };
+  // Not aggregate
+  struct B
+  {
+    int b;
+    B(int _b) : b(_b) {}
+  };
+
+  EXPECT_TRUE(autl::IsAggregate_v<A>);
+  EXPECT_FALSE(autl::IsAggregate_v<B>);
+}
+
+TEST(TypeTraitsTests, IsBoundedArray)
+{
+  EXPECT_FALSE(autl::IsBoundedArray_v<int>);
+  EXPECT_FALSE(autl::IsBoundedArray_v<int[]>);
+  EXPECT_TRUE(autl::IsBoundedArray_v<int[10]>);
+}
+
+TEST(TypeTraitsTests, IsUnboundedArray)
+{
+  EXPECT_FALSE(autl::IsUnboundedArray_v<int>);
+  EXPECT_TRUE(autl::IsUnboundedArray_v<int[]>);
+  EXPECT_FALSE(autl::IsUnboundedArray_v<int[10]>);
+}
+
+TEST(TypeTraitsTests, IsEnum)
+{
+  enum E {};
+
+  EXPECT_FALSE(autl::IsEnum_v<int>);
+  EXPECT_TRUE(autl::IsEnum_v<E>);
+}
+
+TEST(TypeTraitsTests, IsScopedEnum)
+{
+  enum e {};
+  enum class E {};
+
+  EXPECT_FALSE(autl::IsScopedEnum_v<int>);
+  EXPECT_FALSE(autl::IsScopedEnum_v<e>);
+  EXPECT_TRUE(autl::IsScopedEnum_v<E>);
 }
