@@ -1000,7 +1000,7 @@ TEST(TypeTraitsTests, IsAbstract)
   // Abstract
   struct C
   {
-    virtual void foo() = 0;
+virtual void foo() = 0;
   };
   struct D : C
   {
@@ -1097,4 +1097,23 @@ TEST(TypeTraitsTests, HasVirtualDestructor)
 
   EXPECT_FALSE(autl::HasVirtualDestructor_v<A>);
   EXPECT_TRUE(autl::HasVirtualDestructor_v<B>);
+}
+
+TEST(TypeTraitsTests, AlignmentOf)
+{
+  // 1
+  struct A
+  {
+  };
+  // 2
+  struct B
+  {
+    autl::uint8 a;
+    autl::uint16 b;
+  };
+
+  EXPECT_EQ(autl::AlignmentOf_v<A>, 1);
+  EXPECT_EQ(autl::AlignmentOf_v<B>, 2);
+  EXPECT_EQ(autl::AlignmentOf_v<int>, 4);
+  EXPECT_EQ(autl::AlignmentOf_v<double>, 8);
 }

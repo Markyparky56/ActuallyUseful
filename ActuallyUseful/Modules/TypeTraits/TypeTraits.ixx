@@ -1,6 +1,7 @@
 module;
 export module autl.type_traits;
 
+export import autl.type_traits.alignmentof;
 export import autl.type_traits.constvolatile;
 export import autl.type_traits.convertible;
 export import autl.type_traits.core;
