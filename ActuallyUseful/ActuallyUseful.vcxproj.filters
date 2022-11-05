@@ -258,5 +258,8 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsBoundedArray.ixx">
       <Filter>Modules\TypeTraits</Filter>
     </ClCompile>
+    <ClCompile Include="TypeTraits-HasVirtualDestructor.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

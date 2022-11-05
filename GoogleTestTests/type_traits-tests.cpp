@@ -1083,3 +1083,18 @@ TEST(TypeTraitsTests, IsScopedEnum)
   EXPECT_FALSE(autl::IsScopedEnum_v<e>);
   EXPECT_TRUE(autl::IsScopedEnum_v<E>);
 }
+
+TEST(TypeTraitsTests, HasVirtualDestructor)
+{
+  struct A
+  {
+    ~A() = default;
+  };
+  struct B
+  {
+    virtual ~B() = default;
+  };
+
+  EXPECT_FALSE(autl::HasVirtualDestructor_v<A>);
+  EXPECT_TRUE(autl::HasVirtualDestructor_v<B>);
+}

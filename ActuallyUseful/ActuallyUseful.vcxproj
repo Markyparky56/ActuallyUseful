@@ -217,6 +217,7 @@
     <ClCompile Include="Modules\Utility\Utility-Move.ixx" />
     <ClCompile Include="Modules\Utility\Utility-Swap.ixx" />
     <ClCompile Include="Modules\Utility\Utility.ixx" />
+    <ClCompile Include="TypeTraits-HasVirtualDestructor.ixx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
