@@ -11,7 +11,7 @@ export namespace autl
   * If T is an array type, returns the alignment requirement for the element type
   * If T is a reference type, returns the alignment requirement of the type referred to
   */
-  template<typename T> struct AlignmentOf : IntergralConstant<size_t, alignof(T)> {};
+  template<typename T> struct AlignmentOf : IntegralConstant<size_t, alignof(T)> {};
 
   /*
   * Helper to access ::Value of AlignmentOf

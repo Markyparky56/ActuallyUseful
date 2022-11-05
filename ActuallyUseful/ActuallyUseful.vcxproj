@@ -167,6 +167,7 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-AlignmentOf.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Convertible.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-EnableIf.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-Extent.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-HasUniqueObjectRepresentations.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-HasVirtualDestructor.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-ImplicitConversion.ixx" />
@@ -196,6 +197,7 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Logical.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-MakeSigned.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-MakeUnsigned.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-Rank.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-RemoveCVRef.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Decay.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsArithmetic.ixx" />

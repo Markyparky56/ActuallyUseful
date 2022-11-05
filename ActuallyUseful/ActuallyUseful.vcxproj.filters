@@ -264,5 +264,11 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-HasVirtualDestructor.ixx">
       <Filter>Modules\TypeTraits</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-Rank.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-Extent.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

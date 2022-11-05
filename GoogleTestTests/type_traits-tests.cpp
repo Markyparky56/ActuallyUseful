@@ -17,13 +17,13 @@ import autl.utility;
 
 TEST(TypeTraitsTests, IntegralConstant)
 {
-  using int0 = autl::IntergralConstant<int, 0>;
+  using int0 = autl::IntegralConstant<int, 0>;
   EXPECT_EQ(int0::Value, 0);
   EXPECT_EQ(int0(), 0);
   EXPECT_NE(int0::Value, 1);
   EXPECT_NE(int0(), 1);
 
-  using float0 = autl::IntergralConstant<float, 0.f>;
+  using float0 = autl::IntegralConstant<float, 0.f>;
   EXPECT_FLOAT_EQ(float0::Value, 0.f);
   EXPECT_FLOAT_EQ(float0(), 0.f);
   EXPECT_FALSE(float0::Value == 1.f);
@@ -1116,4 +1116,33 @@ TEST(TypeTraitsTests, AlignmentOf)
   EXPECT_EQ(autl::AlignmentOf_v<B>, 2);
   EXPECT_EQ(autl::AlignmentOf_v<int>, 4);
   EXPECT_EQ(autl::AlignmentOf_v<double>, 8);
+}
+
+TEST(TypeTraitsTests, Rank)
+{
+  using a = int;
+  using b = int[];
+  using c = int[][2];
+  using d = int[10][10][10];
+
+  EXPECT_EQ(autl::Rank_v<a>, 0);
+  EXPECT_EQ(autl::Rank_v<b>, 1);
+  EXPECT_EQ(autl::Rank_v<c>, 2);
+  EXPECT_EQ(autl::Rank_v<d>, 3);
+}
+
+TEST(TypeTraitsTests, Extent)
+{
+  constexpr autl::size_t test1 = autl::Extent_v<int[3]>;
+  EXPECT_EQ(test1, 3);
+  constexpr autl::size_t test2 = autl::Extent_v<int[3][4], 0>;
+  constexpr autl::size_t test3 = autl::Extent_v<int[3][4], 1>;
+  constexpr autl::size_t test4 = autl::Extent_v<int[3][4], 2>;
+  EXPECT_EQ(test2, 3);
+  EXPECT_EQ(test3, 4);
+  EXPECT_EQ(test4, 0);
+
+  constexpr int d[] = { 1,2,3,4 };
+  constexpr autl::size_t test5 = autl::Extent_v<decltype(d)>;
+  EXPECT_EQ(test5, 4);
 }
