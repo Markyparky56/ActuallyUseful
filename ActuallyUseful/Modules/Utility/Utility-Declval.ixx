@@ -1,6 +1,7 @@
 module;
 export module autl.utility.declval;
 
+import autl.type_traits.core;
 import autl.type_traits.reference;
 
 export namespace autl
