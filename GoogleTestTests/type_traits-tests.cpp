@@ -878,16 +878,7 @@ TEST(TypeTraitsTests, HasUniqueObjectRepresentations)
   constexpr bool test1 = autl::HasUniqueObjectRepresentations_v<A>;
   EXPECT_TRUE(test1);
   constexpr bool test2 = autl::HasUniqueObjectRepresentations_v<B>;
-  EXPECT_FALSE(test2);
-  
-  //autl::HasUniqueObjectRepresentations<A>::
-  //autl::sub::MyFunc();
-  //autl::sub::MyFunc
-
-  //using namespace autl;
-  //HasUniqueObjectRepresentations<A>
-
-  
+  EXPECT_FALSE(test2);  
 }
 
 struct Empty_B
@@ -1160,3 +1151,38 @@ TEST(TypeTraitsTests, IsConstantEvaluated)
   EXPECT_EQ(x, 42.f);
   EXPECT_EQ(y, -42.f);
 }
+
+/*
+The below test is functional and passes but generates a C5046 warning within the compiler, as such IsCorrespondingMember has been removed for now. 
+
+'__builtin_is_corresponding_member_helper': Symbol involving type with internal linkage not defined
+
+TEST(TypeTraitsTests, IsCorrespondingMember)
+{
+  struct A
+  {
+    int a;
+  };
+  struct B
+  {
+    int b;
+    float b2;
+  };
+  // not standard-layout
+  struct C : A, B
+  {
+    int c;
+  };
+
+  constexpr bool x = autl::IsCorrespondingMember(&A::a, &B::b);
+  EXPECT_TRUE(x);
+  // This one is a bit of a curve-ball, &C::a == &A::a and &C::b == &B::b due to them being inherited members
+  // Specifying template arguments resolves this "ambiguity"
+  constexpr bool y = autl::IsCorrespondingMember(&C::a, &C::b);
+  EXPECT_TRUE(y);
+  constexpr bool z = autl::IsCorrespondingMember<C, C, int, int>(&C::a, &C::b);
+  EXPECT_FALSE(z);
+  constexpr bool v = autl::IsCorrespondingMember<A, C, int, int>(&A::a, &C::c);
+  EXPECT_FALSE(v);
+}
+*/

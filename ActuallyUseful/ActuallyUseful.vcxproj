@@ -180,6 +180,7 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsCompound.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsConstantEvaluated.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsConstructible.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsCorrespondingMember.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsDestructible.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsEmpty.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsEnum.ixx" />

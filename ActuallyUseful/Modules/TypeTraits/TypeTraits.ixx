@@ -22,6 +22,9 @@ export import autl.type_traits.isclass;
 export import autl.type_traits.iscompound;
 export import autl.type_traits.isconstantevaluated;
 export import autl.type_traits.isconstructible;
+// Not included due to C5046 
+// '__builtin_is_corresponding_member_helper': Symbol involving type with internal linkage not defined
+//export import autl.type_traits.iscorrespondingmember;
 export import autl.type_traits.isdestructible;
 export import autl.type_traits.isempty;
 export import autl.type_traits.isenum;
