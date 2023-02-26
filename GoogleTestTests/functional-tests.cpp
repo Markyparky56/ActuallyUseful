@@ -28,6 +28,20 @@ TEST(FunctionalTests, InvokeLambdaBasic)
   EXPECT_FALSE(autl::Invoke(test1, true));
 }
 
+class B
+{
+public:
+  bool MyFunc()
+  {
+    return true;
+  }
+
+  bool MyOtherFunc(bool in)
+  {
+    return !in;
+  }
+};
+
 TEST(FunctionalTests, InvokeMemberBasic)
 {
   class A
@@ -48,4 +62,9 @@ TEST(FunctionalTests, InvokeMemberBasic)
   EXPECT_TRUE(autl::Invoke(&A::MyFunc, a));
 
   EXPECT_FALSE(autl::Invoke(&A::MyOtherFunc, a, true));
+
+  B b;
+  EXPECT_TRUE(autl::Invoke(&B::MyFunc, b));
+
+  EXPECT_FALSE(autl::Invoke(&B::MyOtherFunc, b, true));
 }

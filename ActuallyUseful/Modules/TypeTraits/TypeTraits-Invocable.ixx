@@ -123,7 +123,7 @@ export namespace autl
   * Helper to access ::Value of IsInvocable_r
   */
   template<typename R, typename Callable, typename... Args>
-  inline constexpr bool IsInvocable_r_v = IsInvocable_r<R, Callable, Args...>::Value;//IsInvocable_r<R, Callable, Args...>::IsInvocable_r::Value;
+  inline constexpr bool IsInvocable_r_v = IsInvocable_r<R, Callable, Args...>::Value;
 
   /*
   * Determines if given Callable can be invoked with given arguments and that the call is known to not throw any exceptions
@@ -150,5 +150,5 @@ export namespace autl
   * Helper to access ::Value of IsNoThrowInvocable_r
   */
   template<typename R, typename Callable, typename... Args>
-  inline constexpr bool IsNoThrowInvocable_r_v = IsNoThrowInvocable_r<R, Callable, Args...>::Value;//IsNoThrowInvocable_r<R, Callable, Args...>::IsNoThrowInvocable_r::Value;
+  inline constexpr bool IsNoThrowInvocable_r_v = IsNoThrowInvocable_r<R, Callable, Args...>::Value;
 }

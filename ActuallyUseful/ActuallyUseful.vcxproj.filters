@@ -270,5 +270,8 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Extent.ixx">
       <Filter>Modules\TypeTraits</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsConstantEvaluated.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

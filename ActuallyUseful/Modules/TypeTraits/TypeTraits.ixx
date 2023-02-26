@@ -20,6 +20,7 @@ export import autl.type_traits.isassignable;
 export import autl.type_traits.isboundedarray;
 export import autl.type_traits.isclass;
 export import autl.type_traits.iscompound;
+export import autl.type_traits.isconstantevaluated;
 export import autl.type_traits.isconstructible;
 export import autl.type_traits.isdestructible;
 export import autl.type_traits.isempty;

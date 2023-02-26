@@ -1,19 +1,8 @@
 #include "pch.h"
 
-// Doesn't help
-//#if __INTELLISENSE__
-//#include "../ActuallyUseful/Modules/TypeTraits/TypeTraits.ixx"
-//#include "../ActuallyUseful/Modules/Types/Types.ixx"
-//#include "../ActuallyUseful/Modules/Utility/Utility.ixx"
-//#else
 import autl.type_traits;
 import autl.types;
 import autl.utility;
-//#endif
-
-//using namespace autl;
-//autl::sub::
-//ns2::
 
 TEST(TypeTraitsTests, IntegralConstant)
 {
@@ -1145,4 +1134,29 @@ TEST(TypeTraitsTests, Extent)
   constexpr int d[] = { 1,2,3,4 };
   constexpr autl::size_t test5 = autl::Extent_v<decltype(d)>;
   EXPECT_EQ(test5, 4);
+}
+
+TEST(TypeTraitsTests, IsConstantEvaluated)
+{
+  constexpr auto func = [](float f, int i) -> float
+  {
+    if (autl::IsConstantEvaluated())
+    {
+      return f * float(i);
+    }
+    else
+    {
+      return -f * float(i);
+    }
+  };
+
+  // Should be const evaluated
+  constexpr float x = func(2.f, 21);
+
+  // Shouldn't be const evaluated since n cannot be converted to an rvalue
+  int n = 21;
+  float y = func(2.f, n);
+
+  EXPECT_EQ(x, 42.f);
+  EXPECT_EQ(y, -42.f);
 }
