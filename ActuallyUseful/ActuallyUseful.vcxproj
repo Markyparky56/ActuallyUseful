@@ -139,15 +139,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Modules\Algo\Algo-Transform.ixx" />
+    <ClCompile Include="Modules\Algo\Algo-Utility.ixx" />
     <ClCompile Include="Modules\Algo\Algo.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-Arithmetic.ixx" />
+    <ClCompile Include="Modules\Concepts\Concepts-CommonReference.ixx" />
+    <ClCompile Include="Modules\Concepts\Concepts-ConvertibleTo.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-Core.ixx" />
+    <ClCompile Include="Modules\Concepts\Concepts-DerivedFrom.ixx" />
+    <ClCompile Include="Modules\Concepts\Concepts-EqualityComparable.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-FloatingPoint.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-Integral.ixx" />
+    <ClCompile Include="Modules\Concepts\Concepts-SameAs.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-SignedIntegral.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-UnsignedIntegral.ixx" />
     <ClCompile Include="Modules\Functional\Functional-Invoke.ixx" />
+    <ClCompile Include="Modules\Functional\Functional-Operators.ixx" />
     <ClCompile Include="Modules\Functional\Functional-ReferenceWrapper.ixx" />
     <ClCompile Include="Modules\Functional\Functional.ixx" />
     <ClCompile Include="Modules\Internal\Internal-Invoker.h">
@@ -165,6 +172,8 @@
     <ClCompile Include="Modules\Types\Types-Standard.ixx" />
     <ClCompile Include="Modules\Types\Types.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-AlignmentOf.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-CommonReference.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-CommonType.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Convertible.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-EnableIf.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Extent.ixx" />
