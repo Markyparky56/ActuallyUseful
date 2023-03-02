@@ -102,4 +102,9 @@ export namespace autl
   * Helper to access ::Type of RemoveReference
   */
   template<typename T> using RemoveReference_t = typename RemoveReference<T>::Type;
+
+  /*
+  * Helper to convert a type to a const &
+  */
+  template<typename T> using MakeConstLValueRef = const RemoveReference_t<T>&;
 }

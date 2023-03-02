@@ -14,5 +14,5 @@ export namespace autl
   /*
   * Helper to access ::Type of EnableIf
   */
-  template<bool B, typename T> using EnableIf_t = typename EnableIf<B, T>::Type;
+  template<bool B, typename T = void> using EnableIf_t = typename EnableIf<B, T>::Type;
 }

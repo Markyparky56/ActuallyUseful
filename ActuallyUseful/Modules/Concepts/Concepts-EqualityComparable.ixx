@@ -2,7 +2,9 @@ module;
 export module autl.concepts.equalitycomparable;
 
 import autl.concepts.convertibleto;
+import autl.concepts.commonreference;
 import autl.type_traits.reference;
+import autl.type_traits.commonreference;
 import autl.utility.forward;
 
 namespace autl
@@ -36,7 +38,9 @@ export namespace autl
   /*
   * Specify that the == and != operators on A and B yield results consistent with equality
   */
-  //template<typename A, typename B> concept EqualityComparable = 
-  //     WeaklyEqualityComparableWith<A, B>
-  //  && TODO: CommonReference_t
+  template<typename A, typename B> concept EqualityComparableWith = 
+       EqualityComparable<A> && EqualityComparable<B>
+    && CommonReferenceWith<MakeConstLValueRef<A>, MakeConstLValueRef<B>>
+    && EqualityComparable<CommonReference_t<MakeConstLValueRef<A>, CommonReference_t<B>>>
+    && WeaklyEqualityComparableWith<A, B>;
 }
