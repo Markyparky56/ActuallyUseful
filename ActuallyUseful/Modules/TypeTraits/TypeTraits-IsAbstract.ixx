@@ -6,7 +6,7 @@ import autl.type_traits.integralconstant;
 export namespace autl
 {
   /*
-  * Determine is T is an abstract class
+  * Determine if T is an abstract class
   * An abstract class is a non-union class that declare or inherits at least one pure virtual function
   */
   template<typename T> struct IsAbstract : BoolConstant<__is_abstract(T)> {};

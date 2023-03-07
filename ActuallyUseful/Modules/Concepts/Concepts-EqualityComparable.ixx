@@ -1,6 +1,7 @@
 module;
 export module autl.concepts.equalitycomparable;
 
+import "Internal-BooleanTestable.h";
 import autl.concepts.convertibleto;
 import autl.concepts.commonreference;
 import autl.type_traits.reference;
@@ -9,12 +10,6 @@ import autl.utility.forward;
 
 namespace autl
 {
-  // Define that T must be convertible to a bool
-  template<typename T> concept BooleanTestableHelper = ConvertibleTo<T, bool>;
-  template<typename T> concept BooleanTestable =
-       BooleanTestableHelper<T>
-    && requires(T&& t) { {!Forward<T>(t) } -> BooleanTestableHelper; };
-
   // Define that A and B must be comparable by the == and != operators
   template<typename A, typename B> concept HalfEqualityComparable = 
     requires(const RemoveReference_t<A>& a, const RemoveReference_t<B>& b) {

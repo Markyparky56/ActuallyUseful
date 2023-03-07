@@ -138,11 +138,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Modules\Algo\Algo-ForEach.ixx" />
+    <ClCompile Include="Modules\Algo\Algo-IndexOf.ixx" />
     <ClCompile Include="Modules\Algo\Algo-Transform.ixx" />
     <ClCompile Include="Modules\Algo\Algo-Utility.ixx" />
     <ClCompile Include="Modules\Algo\Algo.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-Arithmetic.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-CommonReference.ixx" />
+    <ClCompile Include="Modules\Concepts\Concepts-ContiguousRange.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-ConvertibleTo.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-Core.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-DerivedFrom.ixx" />
@@ -151,6 +154,7 @@
     <ClCompile Include="Modules\Concepts\Concepts-Integral.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-SameAs.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-SignedIntegral.ixx" />
+    <ClCompile Include="Modules\Concepts\Concepts-TotallyOrdered.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-UnsignedIntegral.ixx" />
     <ClCompile Include="Modules\Functional\Functional-Invoke.ixx" />
@@ -158,9 +162,8 @@
     <ClCompile Include="Modules\Functional\Functional-ReferenceWrapper.ixx" />
     <ClCompile Include="Modules\Functional\Functional.ixx" />
     <ClCompile Include="Modules\Internal\Internal-Invoker.h">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/internalPartition %(AdditionalOptions)</AdditionalOptions>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsHeaderUnit</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsHeaderUnit</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCppModuleInternalPartition</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCppModuleInternalPartition</CompileAs>
     </ClCompile>
     <ClCompile Include="Modules\Limits\Limits-Floats.ixx" />
     <ClCompile Include="Modules\Limits\Limits-Ints.ixx" />
@@ -189,6 +192,7 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsCompound.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsConstantEvaluated.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsConstructible.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-IsContiguous.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsCorrespondingMember.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsDestructible.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-IsEmpty.ixx" />
@@ -232,6 +236,12 @@
     <ClCompile Include="Modules\Utility\Utility-Move.ixx" />
     <ClCompile Include="Modules\Utility\Utility-Swap.ixx" />
     <ClCompile Include="Modules\Utility\Utility.ixx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Modules\Internal\Internal-BooleanTestable.h">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCppModuleInternalPartition</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCppModuleInternalPartition</CompileAs>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

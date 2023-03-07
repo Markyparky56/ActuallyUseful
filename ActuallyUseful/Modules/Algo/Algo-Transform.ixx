@@ -5,6 +5,21 @@ import autl.functional.invoke;
 
 export namespace autl
 {
+  // TODO: Swap out In/OutArrayType for an "iterable container type"
+  // TODO: Define common interface for adding to a container
+
+  /*
+  * For-each item in inArray, execute transformOp and push result onto outArray
+  */
+  template<class InArrayType, class OutArrayType, typename TransformOp>
+  void Transform(const InArrayType& inArray, OutArrayType& outArray, TransformOp transformOp)
+  {
+    for (auto& item : inArray)
+    {
+      outArray.push_back(Invoke(transformOp, item));
+    }
+  }
+
   /*
   * For-each item in inArray, pass to predicate. If predicate passes, pass to transformOp and push result onto outArray
   */
@@ -20,16 +35,6 @@ export namespace autl
     }
   }
 
-  /*
-  * For-each item in inArray, execute transformOp and push result onto outArray
-  */
-  template<class InArrayType, class OutArrayType, typename TransformOp>
-  void Transform(const InArrayType& inArray, OutArrayType& outArray, TransformOp transformOp)
-  {
-    for (auto& item : inArray)
-    {
-      outArray.push_back(Invoke(transformOp, item));
-    }
-  }
+
 }
 
