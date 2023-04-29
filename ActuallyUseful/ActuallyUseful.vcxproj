@@ -152,6 +152,7 @@
     <ClCompile Include="Modules\Concepts\Concepts-EqualityComparable.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-FloatingPoint.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-Integral.ixx" />
+    <ClCompile Include="Modules\Concepts\Concepts-Invocable.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-SameAs.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-SignedIntegral.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-TotallyOrdered.ixx" />
@@ -234,6 +235,8 @@
     <ClCompile Include="Modules\Utility\Utility-Declval.ixx" />
     <ClCompile Include="Modules\Utility\Utility-Exchange.ixx" />
     <ClCompile Include="Modules\Utility\Utility-Forward.ixx" />
+    <ClCompile Include="Modules\Utility\Utility-GetData.ixx" />
+    <ClCompile Include="Modules\Utility\Utility-GetNum.ixx" />
     <ClCompile Include="Modules\Utility\Utility-Move.ixx" />
     <ClCompile Include="Modules\Utility\Utility-Swap.ixx" />
     <ClCompile Include="Modules\Utility\Utility.ixx" />

@@ -321,5 +321,14 @@
     <ClCompile Include="Modules\Concepts\Concepts-ContiguousRange.ixx">
       <Filter>Modules\Concepts</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\Utility\Utility-GetData.ixx">
+      <Filter>Modules\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Utility\Utility-GetNum.ixx">
+      <Filter>Modules\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Concepts\Concepts-Invocable.ixx">
+      <Filter>Modules\Concepts</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -9,5 +9,5 @@ namespace autl
   template<typename T> concept BooleanTestableHelper = ConvertibleTo<T, bool>;
   template<typename T> concept BooleanTestable =
     BooleanTestableHelper<T>
-    && requires(T && t) { {!Forward<T>(t) } -> BooleanTestableHelper; };
+    && requires(T&& t) { {!Forward<T>(t) } -> BooleanTestableHelper; };
 }
