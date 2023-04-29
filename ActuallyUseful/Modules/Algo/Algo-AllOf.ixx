@@ -9,7 +9,7 @@ export namespace autl
   * Check each element of the given range, return false if any eval to false
   */
   template<typename RangeType>
-  bool AllOf(const RangeType& range)
+  bool AllOf(RangeType&& range)
   {
     for (const auto& element : range)
     {
@@ -27,7 +27,7 @@ export namespace autl
   * Check each element of the given range, return false is any eval to false when projected by the given callable
   */
   template<typename RangeType, typename ProjectionCallable>
-  bool AllOf(const RangeType& range, ProjectionCallable proj)
+  bool AllOf(RangeType&& range, ProjectionCallable proj)
   {
     for (const auto& element : range)
     {

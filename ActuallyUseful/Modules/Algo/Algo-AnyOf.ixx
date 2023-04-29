@@ -10,7 +10,7 @@ export namespace autl
   * Checks if any element in the given range evals to true
   */
   template<typename RangeType>
-  bool AnyOf(const RangeType& range)
+  bool AnyOf(RangeType&& range)
   {
     return !NoneOf(range);
   }
@@ -19,7 +19,7 @@ export namespace autl
   * Check is any element, projected via the given callable, evals to true
   */
   template<typename RangeType, typename ProjectionCallable>
-  bool AnyOf(const RangeType& range, ProjectionCallable proj)
+  bool AnyOf(RangeType&& range, ProjectionCallable proj)
   {
     return !NoneOf(range, Move(proj));
   }
