@@ -49,3 +49,26 @@ TEST(AlgoTransformTests, TransformTimesTwo)
     }
   }
 }
+
+TEST(AlgoAllOfTests, Truthy)
+{
+  std::vector<bool> trues = { true, true, true, true };
+  std::vector<bool> falses = { false, false, false, false };
+  std::vector<bool> mixed = { true, false, true, false };
+
+  EXPECT_TRUE(autl::AllOf(trues));
+  EXPECT_FALSE(autl::AllOf(falses));
+  EXPECT_FALSE(autl::AllOf(mixed));
+}
+
+TEST(AlgoAllOfTests, TruthyProjected)
+{
+  std::vector<int> evens = { 2, 4, 6, 8 };
+  std::vector<int> odds = { 1, 3, 5, 7 };
+
+  auto IsEven = [](const int i) { return i % 2 == 0; };
+  auto IsOdd = [](const int i) { return i % 2 != 0; };
+
+  EXPECT_TRUE(autl::AllOf(evens, IsEven));
+  EXPECT_TRUE(autl::AllOf(odds, IsOdd));
+}

@@ -339,5 +339,8 @@
     <ClCompile Include="Modules\Concepts\Concepts-CommonWith.ixx">
       <Filter>Modules\Concepts</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\Algo\Algo-AllOf.ixx">
+      <Filter>Modules\Algo</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
