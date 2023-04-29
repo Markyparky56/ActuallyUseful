@@ -85,4 +85,13 @@ export namespace autl
   {
     return MinElementBy(range, Identity(), Less());
   }
+
+  /*
+  * Returns an iterator to the first minimum element in a range
+  */
+  template<typename IteratorType>
+  auto MinElement(IteratorType first, IteratorType last) -> decltype(MinElementBy(Move(first), Move(last), Identity(), Less()))
+  {
+    return MinElementBy(Move(first), Move(last), Identity(), Less());
+  }
 }

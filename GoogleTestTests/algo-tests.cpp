@@ -142,10 +142,19 @@ TEST(AlgoAnyOfTests, AnyOfProj)
   EXPECT_FALSE(autl::AnyOf(num2, IsEven));
   EXPECT_TRUE(autl::AnyOf(num3, [](const int i) {return i == 3; }));
 }
-//
-//TEST(AlgoMinElementTests, SimpleMinPointer)
-//{
-//  std::vector<int> nums = { 4, 2, 1, 3 };
-//
-//  EXPECT_EQ(autl::MinElement(nums), 1);
-//}
+
+TEST(AlgoMinElementTests, SimpleMinPointer)
+{
+  std::vector<int> nums = { 4, 2, 1, 3 };
+
+  int* min = autl::MinElement(nums);
+  EXPECT_EQ(*min, 1);
+}
+
+TEST(AlgoMinElementTests, SimpleMinIter)
+{
+  std::vector<int> nums = { 4, 2, 1, 3 };
+
+  std::vector<int>::iterator min = autl::MinElement(nums.begin(), nums.end());
+  EXPECT_EQ(*min, 1);
+}
