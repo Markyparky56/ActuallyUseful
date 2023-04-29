@@ -330,5 +330,11 @@
     <ClCompile Include="Modules\Concepts\Concepts-Invocable.ixx">
       <Filter>Modules\Concepts</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\Functional\Functional-IsTransparent.ixx">
+      <Filter>Modules\Functional</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Concepts\Concepts-IsTransparentFunctor.ixx">
+      <Filter>Modules\Concepts</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -153,12 +153,14 @@
     <ClCompile Include="Modules\Concepts\Concepts-FloatingPoint.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-Integral.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-Invocable.ixx" />
+    <ClCompile Include="Modules\Concepts\Concepts-IsTransparentFunctor.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-SameAs.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-SignedIntegral.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-TotallyOrdered.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-UnsignedIntegral.ixx" />
     <ClCompile Include="Modules\Functional\Functional-Invoke.ixx" />
+    <ClCompile Include="Modules\Functional\Functional-IsTransparent.ixx" />
     <ClCompile Include="Modules\Functional\Functional-Operators.ixx" />
     <ClCompile Include="Modules\Functional\Functional-ReferenceWrapper.ixx" />
     <ClCompile Include="Modules\Functional\Functional.ixx" />
