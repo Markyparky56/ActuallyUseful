@@ -17,7 +17,7 @@ namespace autl
 
   template<typename RangeType, typename ValueType, typename ProjectionCallable>
     requires ContiguousRange<RangeType> 
-  auto IndexOfBy(RangeType&& range, const ValueType& value, ProjectionCallable proj)
+  auto IndexOfBy_Internal(RangeType&& range, const ValueType& value, ProjectionCallable proj)
   {
     auto num = GetNum(range);
     auto data = GetData(range);
@@ -38,7 +38,7 @@ namespace autl
 
   template<typename RangeType, typename PredicateCallable>
     requires ContiguousRange<RangeType>
-  auto IndexOfByPredicate(RangeType&&, PredicateCallable pred)
+  auto IndexOfByPredicate_Internal(RangeType&& range, PredicateCallable pred)
   {
     auto num = GetNum(range);
     auto data = GetData(range);
@@ -68,7 +68,7 @@ export namespace autl
     requires ContiguousRange<RangeType>
   auto IndexOf(RangeType&& range, const ValueType& value)
   {
-    return IndexOfBy(Forward<RangeType>(range), value, Identity());
+    return IndexOfBy_Internal(Forward<RangeType>(range), value, Identity());
   }
 
   /*
@@ -79,7 +79,7 @@ export namespace autl
     requires ContiguousRange<RangeType>
   auto IndexOfBy(RangeType&& range, const ValueType& value, ProjectionCallable proj)
   {
-    return IndexOfBy(Forward<RangeType>(range), value, Move(proj));
+    return IndexOfBy_Internal(Forward<RangeType>(range), value, Move(proj));
   }
 
   /*
@@ -90,6 +90,6 @@ export namespace autl
     requires ContiguousRange<RangeType>
   auto IndexOfByPredicate(RangeType&& range, PredicateCallable pred)
   {
-    return IndexOfByPredicate(Forward<RangeType>(range), Move(pred));
+    return IndexOfByPredicate_Internal(Forward<RangeType>(range), Move(pred));
   }
 }
