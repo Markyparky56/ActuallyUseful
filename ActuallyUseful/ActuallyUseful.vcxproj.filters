@@ -342,5 +342,8 @@
     <ClCompile Include="Modules\Algo\Algo-AllOf.ixx">
       <Filter>Modules\Algo</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\Algo\Algo-NoneOf.ixx">
+      <Filter>Modules\Algo</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
