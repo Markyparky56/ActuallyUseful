@@ -8,6 +8,8 @@ import autl.type_traits.reference;
 import autl.type_traits.commonreference;
 import autl.utility.forward;
 
+// Temporarily exported for testing
+export 
 namespace autl
 {
   // Define that A and B must be comparable by the == and != operators

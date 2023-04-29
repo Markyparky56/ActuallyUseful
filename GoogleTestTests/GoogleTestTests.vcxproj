@@ -38,6 +38,7 @@
   <ItemGroup>
     <ClCompile Include="algo-tests.cpp" />
     <ClCompile Include="common_type-tests.cpp" />
+    <ClCompile Include="concepts-tests.cpp" />
     <ClCompile Include="functional-tests.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
