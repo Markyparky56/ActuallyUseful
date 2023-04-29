@@ -13,7 +13,7 @@ namespace autl
   * Project each element with given projection callable then compare with given predicate callable
   */
   template<typename RangeType, typename ProjectionCallable, typename PredicateCallable>
-  RangePointerType_t<RangeType> MinElementBy(RangeType& range, ProjectionCallable proj, PredicateCallable pred)
+  RangePointerType_t<RangeType> MinElementByInternal(RangeType& range, ProjectionCallable proj, PredicateCallable pred)
   {
     RangePointerType_t<RangeType> result = nullptr;
 
@@ -35,7 +35,7 @@ namespace autl
   * Project each element with given projection callable then compare with given predicate callable
   */
   template<typename IteratorType, typename ProjectionCallable, typename PredicateCallable>
-  IteratorType MinElementBy(IteratorType first, IteratorType last, ProjectionCallable proj, PredicateCallable pred)
+  IteratorType MinElementByInternal(IteratorType first, IteratorType last, ProjectionCallable proj, PredicateCallable pred)
   {
     // If only one element, that's our minimum
     if (first == last)
@@ -64,21 +64,86 @@ namespace autl
 
 export namespace autl
 {
+  // Concept to restrict pointer returning functions to inputs that implement .begin, 
+  // This stops the compiler trying to deduce the return type with an iterator and breaking compilation
+  template<typename RangeType>
+  concept HasBegin = requires { {Declval<RangeType&>().begin()}; };
+
   /*
   * Returns a pointer to the first minimum element in a range
   */
   template<typename RangeType>
-  auto MinElement(RangeType& range) -> decltype(MinElementBy(range, Identity(), Less()))
+    requires HasBegin<RangeType>
+  auto MinElement(RangeType& range) -> decltype(MinElementByInternal(range, Identity(), Less<>()))
   {
-    return MinElementBy(range, Identity(), Less());
+    return MinElementByInternal(range, Identity(), Less<>());
+  }
+
+  /*
+  * Returns a pointer to the first minimum element in a range, as determined by the given predicate callable
+  */
+  template<typename RangeType, typename PredicateCallable>
+    requires HasBegin<RangeType>
+  auto MinElement(RangeType& range, PredicateCallable pred) -> decltype(MinElementByInternal(range, Identity(), Move(pred)))
+  {
+    return MinElementByInternal(range, Identity(), Move(pred));
+  }
+
+  /*
+  * Returns a pointer to the first minimum element in a range, projecting the element before comparison with the given projection callable
+  */
+  template<typename RangeType, typename ProjectionCallable>
+    requires HasBegin<RangeType>
+  auto MinElementBy(RangeType& range, ProjectionCallable proj) -> decltype(MinElementByInternal(range, Move(proj), Less<>()))
+  {
+    return MinElementByInternal(range, Move(proj), Less<>());
+  }
+
+  /*
+  * Returns a pointer to the first minimum element in a range, as determined by the given predicate callable
+  * projecting the element before comparison with the given projection callable
+  */
+  template<typename RangeType, typename ProjectionCallable, typename PredicateCallable>
+    requires HasBegin<RangeType>
+  auto MinElementBy(RangeType& range, ProjectionCallable proj, PredicateCallable pred) -> decltype(MinElementByInternal(range, Move(proj), Move(pred)))
+  {
+    return MinElementByInternal(range, Move(proj), Move(pred));
   }
 
   /*
   * Returns an iterator to the first minimum element in a range
   */
   template<typename IteratorType>
-  auto MinElement(IteratorType first, IteratorType last) -> decltype(MinElementBy(Move(first), Move(last), Identity(), Less()))
+  auto MinElement(IteratorType first, IteratorType last) -> decltype(MinElementByInternal(Move(first), Move(last), Identity(), Less<>()))
   {
-    return MinElementBy(Move(first), Move(last), Identity(), Less());
+    return MinElementByInternal(Move(first), Move(last), Identity(), Less<>());
+  }
+
+  /*
+  * Returns an iterator to the first minimum element in a range, as determined by the given predicate callable
+  */
+  template<typename IteratorType, typename PredicateCallable>
+  auto MinElement(IteratorType first, IteratorType last, PredicateCallable pred) -> decltype(MinElementByInternal(Move(first), Move(last), Identity(), Move(pred)))
+  {
+    return MinElementByInternal(Move(first), Move(last), Identity(), Move(pred));
+  }
+
+  /*
+  * Returns an iterator to the first minimum element in a range, projecting the element before comparison with the given projection callable
+  */
+  template<typename IteratorType, typename ProjectionCallable>
+  auto MinElementBy(IteratorType first, IteratorType last, ProjectionCallable proj) -> decltype(MinElementByInternal(Move(first), Move(last), Move(proj), Less<>()))
+  {
+    return MinElementByInternal(Move(first), Move(last), Move(proj), Less<>());
+  }
+
+  /*
+  * Returns an iterator to the first minimum element in a range, as determined by the given predicate callable
+  * projecting the element before comparison with the given projection callable
+  */
+  template<typename IteratorType, typename ProjectionCallable, typename PredicateCallable>
+  auto MinElementBy(IteratorType first, IteratorType last, ProjectionCallable proj, PredicateCallable pred) -> decltype(MinElementByInternal(Move(first), Move(last), Move(proj), Move(pred)))
+  {
+    return MinElementByInternal(Move(first), Move(last), Move(proj), Move(pred));
   }
 }

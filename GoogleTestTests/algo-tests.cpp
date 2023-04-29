@@ -1,5 +1,6 @@
 #include "pch.h"
 #include <vector>
+#include <span>
 
 import autl.algo;
 
@@ -146,15 +147,37 @@ TEST(AlgoAnyOfTests, AnyOfProj)
 TEST(AlgoMinElementTests, SimpleMinPointer)
 {
   std::vector<int> nums = { 4, 2, 1, 3 };
-
   int* min = autl::MinElement(nums);
   EXPECT_EQ(*min, 1);
+
+  // TODO: Need to implement autl::Begin to support bare arrays
+  //int nums2[4] = { 4, 2, 1, 3 };
+  //int* min2 = autl::MinElement(nums2);
+  //EXPECT_EQ(*min2, 1);
+}
+
+TEST(AlgoMinElementTests, MinPointerPredicate)
+{
+  std::vector<int> nums = { 4, 2, 1, 3 };
+  int* min = autl::MinElement(nums, [](const int lhs, const int rhs) { return lhs < rhs; });
+  EXPECT_EQ(*min, 1);
+
+  //int nums2[4] = { 4, 2, 1, 3 };
+  //int* min2 = autl::MinElement(nums2);
+  //EXPECT_EQ(*min2, 1);
 }
 
 TEST(AlgoMinElementTests, SimpleMinIter)
 {
   std::vector<int> nums = { 4, 2, 1, 3 };
-
   std::vector<int>::iterator min = autl::MinElement(nums.begin(), nums.end());
   EXPECT_EQ(*min, 1);
+
+  int nums2[4] = { 4, 2, 1, 3 };
+  //int* min2 = autl::MinElement(nums2, nums2 + 4);
+  //EXPECT_EQ(*min2, 1);
+
+  std::span<int> nums3(nums2);
+  std::span<int>::iterator min3 = autl::MinElement(nums3.begin(), nums3.end());
+  EXPECT_EQ(*min3, 1);
 }
