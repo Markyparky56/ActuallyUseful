@@ -39,6 +39,7 @@ export namespace autl
        TotallyOrdered<A>
     && TotallyOrdered<B>
     && EqualityComparableWith<A, B>
-    && TotallyOrdered<CommonReference_t<MakeConstLValueRef<A>&, MakeConstLValueRef<B>&>>
-    && PartiallyOrderedWith<A, B>;
+    && TotallyOrdered<CommonReference_t<MakeConstLValueRef<A>, MakeConstLValueRef<B>>>
+    && PartiallyOrderedWith<A, B>
+    ;
 }

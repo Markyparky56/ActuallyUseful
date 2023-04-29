@@ -16,7 +16,7 @@ namespace autl
     using RValue = T;
   };
 
-  // referencable type
+  // referenceable type
   template<typename T>
   struct AddReference<T, Void_t<T&>>
   {

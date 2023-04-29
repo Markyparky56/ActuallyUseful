@@ -142,6 +142,7 @@
     <ClCompile Include="Modules\Algo\Algo-AnyOf.ixx" />
     <ClCompile Include="Modules\Algo\Algo-ForEach.ixx" />
     <ClCompile Include="Modules\Algo\Algo-IndexOf.ixx" />
+    <ClCompile Include="Modules\Algo\Algo-MinElement.ixx" />
     <ClCompile Include="Modules\Algo\Algo-NoneOf.ixx" />
     <ClCompile Include="Modules\Algo\Algo-Transform.ixx" />
     <ClCompile Include="Modules\Algo\Algo-Utility.ixx" />
@@ -220,6 +221,7 @@
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Logical.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-MakeSigned.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-MakeUnsigned.ixx" />
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-RangePointerType.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Rank.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-RemoveCVRef.ixx" />
     <ClCompile Include="Modules\TypeTraits\TypeTraits-Decay.ixx" />

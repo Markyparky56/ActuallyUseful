@@ -43,10 +43,6 @@ namespace autl
   //      If D exists and IsConvertible<B&&, D> is true, then the simple common reference type is D
   // - Otherwise, there is no simple common reference type
 
-  // Honestly, no idea what this does or why it's called this. 
-  // This one is a lot scarier than the one in CommonType
-  template<typename X, typename Y> using CondRes = decltype(false ? Declval<X(&)()>()() : Declval<Y(&)()>()());
-
   // XREF(A) denotes a unary alias template T such that T<U> denotes the same type as U
   // with the additon of A's cv and ref qualifiers
   // XRef is short-hand for cross-ref, hence the transference of qualifiers
@@ -60,7 +56,9 @@ namespace autl
 
   template<typename T1, typename T2>
   using BasicCommonReference_t =
-    typename BasicCommonReference<RemoveCVRef_t<T1>, RemoveCVRef_t<T2>, XRef<T1>::template Apply, XRef<T2>::template Apply>::Type;
+    typename BasicCommonReference<
+        RemoveCVRef_t<T1>, RemoveCVRef_t<T2>
+      , XRef<T1>::template Apply, XRef<T2>::template Apply>::Type;
 
   // Internal helper CommonRef signature
   template<typename A, typename B, typename X=RemoveReference_t<A>, typename Y=RemoveReference_t<B>>
@@ -69,14 +67,19 @@ namespace autl
   template<typename X, typename Y> 
   using CommonRef_t = typename CommonRef<X, Y>::Type;
 
+  // Honestly, no idea what this does or why it's called this. 
+  // This one is a lot scarier than the one in CommonType
+  template<typename X, typename Y> using CondRes = decltype(false ? Declval<X(&)()>()() : Declval<Y(&)()>()());
+
   // Alias wherein we copy the const-volatile reference qualifiers from X to Y and vice versa
   template<typename X, typename Y>
-  using CVCondRes = CondRes<TransferCVRef_t<X, Y>&, TransferCVRef_t<Y, X>&>;
+  using CVCondRes = CondRes<TransferCV_t<X, Y>&, TransferCV_t<Y, X>&>;
 
   // When A and B are both lvalue reference types, CommonRef is CondRes(CopyCV(X,Y)&, CopyCV(Y,X)&) 
   // if that type exists and is a reference type
   template<typename A, typename B, typename X, typename Y>
-    requires requires { typename CVCondRes<X, Y>; } && IsReference_v<CVCondRes<X, Y>>
+    requires requires { typename CVCondRes<X, Y>; }
+                && IsReference_v<CVCondRes<X, Y>>
   struct CommonRef<A&, B&, X, Y>
   {
     using Type = CVCondRes<X, Y>;
@@ -148,8 +151,6 @@ namespace autl
   // Sub-bullet 4, use CommonType
   template<typename T1, typename T2> struct CommonRefSubBullet3 : CommonType<T1, T2> {};
 }
-
-
 
 export namespace autl
 {

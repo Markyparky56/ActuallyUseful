@@ -348,5 +348,11 @@
     <ClCompile Include="Modules\Algo\Algo-AnyOf.ixx">
       <Filter>Modules\Algo</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\Algo\Algo-MinElement.ixx">
+      <Filter>Modules\Algo</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\TypeTraits\TypeTraits-RangePointerType.ixx">
+      <Filter>Modules\TypeTraits</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

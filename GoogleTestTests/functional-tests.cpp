@@ -68,3 +68,13 @@ TEST(FunctionalTests, InvokeMemberBasic)
 
   EXPECT_FALSE(autl::Invoke(&B::MyOtherFunc, b, true));
 }
+
+TEST(FunctionalOperatorTests, InvokeIdentity)
+{
+  EXPECT_EQ(autl::Invoke(autl::Identity(), 1), 1);
+}
+
+TEST(FunctionalOperatorTests, InvokeLess)
+{
+  EXPECT_TRUE(autl::Invoke(autl::Less(), 1, 2));
+}

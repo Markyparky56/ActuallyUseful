@@ -61,6 +61,13 @@ TEST(AlgoAllOfTests, Truthy)
   EXPECT_FALSE(autl::AllOf(mixed));
 }
 
+TEST(AlgoAllOfTests, TruthyRValue)
+{
+  // Test r-value temporary input
+  EXPECT_TRUE(autl::AllOf(std::vector<bool>{ true, true }));
+  EXPECT_FALSE(autl::AllOf(std::vector<bool>{ true, false }));
+}
+
 TEST(AlgoAllOfTests, TruthyProjected)
 {
   std::vector<int> evens = { 2, 4, 6, 8 };
@@ -82,6 +89,13 @@ TEST(AlgoNoneOfTests, Falsey)
   EXPECT_FALSE(autl::NoneOf(trues));
   EXPECT_TRUE(autl::NoneOf(falses));
   EXPECT_FALSE(autl::NoneOf(mixed));
+}
+
+TEST(AlgoNoneOfTests, FalseRValue)
+{
+  // Test r-value temporary input
+  EXPECT_TRUE(autl::NoneOf(std::vector<bool>{ false, false }));
+  EXPECT_FALSE(autl::NoneOf(std::vector<bool>{ true, false }));
 }
 
 TEST(AlgoNoneOfTests, FalseyProjected)
@@ -109,6 +123,13 @@ TEST(AlgoAnyOfTests, AnyOf)
   EXPECT_TRUE(autl::AnyOf(mixed));
 }
 
+TEST(AlgoAnyOfTests, AnyOfRValue)
+{
+  // Test r-value temporary input
+  EXPECT_TRUE(autl::AnyOf(std::vector<bool>{ false, true }));
+  EXPECT_FALSE(autl::AnyOf(std::vector<bool>{ false, false }));
+}
+
 TEST(AlgoAnyOfTests, AnyOfProj)
 {
   std::vector<int> nums = { 1, 2, 3, 4 };
@@ -121,3 +142,10 @@ TEST(AlgoAnyOfTests, AnyOfProj)
   EXPECT_FALSE(autl::AnyOf(num2, IsEven));
   EXPECT_TRUE(autl::AnyOf(num3, [](const int i) {return i == 3; }));
 }
+//
+//TEST(AlgoMinElementTests, SimpleMinPointer)
+//{
+//  std::vector<int> nums = { 4, 2, 1, 3 };
+//
+//  EXPECT_EQ(autl::MinElement(nums), 1);
+//}
