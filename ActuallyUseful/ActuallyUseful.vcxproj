@@ -145,6 +145,7 @@
     <ClCompile Include="Modules\Algo\Algo.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-Arithmetic.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-CommonReference.ixx" />
+    <ClCompile Include="Modules\Concepts\Concepts-CommonWith.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-ContiguousRange.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-ConvertibleTo.ixx" />
     <ClCompile Include="Modules\Concepts\Concepts-Core.ixx" />
