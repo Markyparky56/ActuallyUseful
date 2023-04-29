@@ -18,26 +18,13 @@ namespace autl
     RangePointerType_t<RangeType> result = nullptr;
 
     for (auto& element : range)
-    {
-      if (!result)
+    {     
+      // Set result if not set, or predicate says element is less than current result
+      if (!result || Invoke(pred, Invoke(proj, element), Invoke(proj, *result)))
       {
-        result = &element;
-        continue;
-      }
-
-      auto projE = Invoke(proj, element);
-      auto projR = Invoke(proj, *result);
-      if (Invoke(pred, projE, projR))
-      {
+        // Take pointer to element
         result = &element;
       }
-      
-      //// Set result if not set, or predicate says element is less than current result
-      //if (!result || Invoke(pred, Invoke(proj, element), Invoke(proj, *result)))
-      //{
-      //  // Take pointer to element
-      //  result = &element;
-      //}
     }
 
     return result;
