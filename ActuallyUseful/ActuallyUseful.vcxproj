@@ -139,6 +139,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Modules\Algo\Algo-AllOf.ixx" />
+    <ClCompile Include="Modules\Algo\Algo-AnyOf.ixx" />
     <ClCompile Include="Modules\Algo\Algo-ForEach.ixx" />
     <ClCompile Include="Modules\Algo\Algo-IndexOf.ixx" />
     <ClCompile Include="Modules\Algo\Algo-NoneOf.ixx" />

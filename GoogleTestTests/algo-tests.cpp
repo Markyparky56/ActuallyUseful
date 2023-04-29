@@ -97,3 +97,27 @@ TEST(AlgoNoneOfTests, FalseyProjected)
   EXPECT_TRUE(autl::NoneOf(odds, IsEven));
   EXPECT_FALSE(autl::NoneOf(odds, IsOdd));
 }
+
+TEST(AlgoAnyOfTests, AnyOf)
+{
+  std::vector<bool> trues = { true, true, true, true };
+  std::vector<bool> falses = { false, false, false, false };
+  std::vector<bool> mixed = { false, false, false, true };
+
+  EXPECT_TRUE(autl::AnyOf(trues));
+  EXPECT_FALSE(autl::AnyOf(falses));
+  EXPECT_TRUE(autl::AnyOf(mixed));
+}
+
+TEST(AlgoAnyOfTests, AnyOfProj)
+{
+  std::vector<int> nums = { 1, 2, 3, 4 };
+  std::vector<int> num2 = { 1, 3, 5, 7 };
+  std::vector<int> num3 = { 2, 2, 2, 3 };
+
+  auto IsEven = [](const int i) { return i % 2 == 0; };
+
+  EXPECT_TRUE(autl::AnyOf(nums, IsEven));
+  EXPECT_FALSE(autl::AnyOf(num2, IsEven));
+  EXPECT_TRUE(autl::AnyOf(num3, [](const int i) {return i == 3; }));
+}
