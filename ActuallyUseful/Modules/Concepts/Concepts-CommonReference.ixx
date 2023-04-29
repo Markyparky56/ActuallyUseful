@@ -8,7 +8,7 @@ import autl.concepts.convertibleto;
 export namespace autl
 {
   /*
-  * 
+  * Specifies that A and B share a common reference type to which both can be converted
   */
   template<typename A, typename B>
   concept CommonReferenceWith =
