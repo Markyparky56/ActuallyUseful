@@ -158,13 +158,42 @@ TEST(AlgoMinElementTests, SimpleMinPointer)
 
 TEST(AlgoMinElementTests, MinPointerPredicate)
 {
+  auto sortLess = [](const int lhs, const int rhs) { return lhs < rhs; };
+
   std::vector<int> nums = { 4, 2, 1, 3 };
-  int* min = autl::MinElement(nums, [](const int lhs, const int rhs) { return lhs < rhs; });
+  int* min = autl::MinElement(nums, sortLess);
   EXPECT_EQ(*min, 1);
 
   int nums2[4] = { 4, 2, 1, 3 };
-  int* min2 = autl::MinElement(nums2);
+  int* min2 = autl::MinElement(nums2, sortLess);
   EXPECT_EQ(*min2, 1);
+}
+
+TEST(AlgoMinElementTests, MinPointerProjection)
+{
+  auto projInvert = [](const int element) { return -element; };
+
+  std::vector<int> nums = { 4, 2, 1, 3 };
+  int* min = autl::MinElementBy(nums, projInvert);
+  EXPECT_EQ(*min, 4);
+
+  int nums2[4] = { 4, 2, 1, 3 };
+  int* min2 = autl::MinElementBy(nums2, projInvert);
+  EXPECT_EQ(*min2, 4);
+}
+
+TEST(AlgoMinElementTests, MinPointerProjectionPredicate)
+{
+  auto sortLess = [](const int lhs, const int rhs) { return lhs < rhs; };
+  auto projInvert = [](const int element) { return -element; };
+
+  std::vector<int> nums = { 4, 2, 1, 3 };
+  int* min = autl::MinElementBy(nums, projInvert, sortLess);
+  EXPECT_EQ(*min, 4);
+
+  int nums2[4] = { 4, 2, 1, 3 };
+  int* min2 = autl::MinElementBy(nums2, projInvert, sortLess);
+  EXPECT_EQ(*min2, 4);
 }
 
 TEST(AlgoMinElementTests, SimpleMinIter)
@@ -180,4 +209,56 @@ TEST(AlgoMinElementTests, SimpleMinIter)
   std::span<int> nums3(nums2);
   std::span<int>::iterator min3 = autl::MinElement(nums3.begin(), nums3.end());
   EXPECT_EQ(*min3, 1);
+}
+
+TEST(AlgoMinElementTests, MinIterPredicate)
+{
+  auto sortLess = [](const int lhs, const int rhs) { return lhs < rhs; };
+
+  std::vector<int> nums = { 4, 2, 1, 3 };
+  std::vector<int>::iterator min = autl::MinElement(nums.begin(), nums.end(), sortLess);
+  EXPECT_EQ(*min, 1);
+
+  int nums2[4] = { 4, 2, 1, 3 };
+  int* min2 = autl::MinElement(nums2, nums2 + 4, sortLess);
+  EXPECT_EQ(*min2, 1);
+
+  std::span<int> nums3(nums2);
+  std::span<int>::iterator min3 = autl::MinElement(nums3.begin(), nums3.end(), sortLess);
+  EXPECT_EQ(*min3, 1);
+}
+
+TEST(AlgoMinElementTests, MinIterProjection)
+{
+  auto projInvert = [](const int element) { return -element; };
+
+  std::vector<int> nums = { 4, 2, 1, 3 }; // -4, -2,  -1, -3
+  std::vector<int>::iterator min = autl::MinElementBy(nums.begin(), nums.end(), projInvert);
+  EXPECT_EQ(*min, 4);
+
+  int nums2[4] = { 4, 2, 1, 3 };
+  int* min2 = autl::MinElementBy(nums2, nums2 + 4, projInvert);
+  EXPECT_EQ(*min2, 4);
+
+  std::span<int> nums3(nums2);
+  std::span<int>::iterator min3 = autl::MinElementBy(nums3.begin(), nums3.end(), projInvert);
+  EXPECT_EQ(*min3, 4);
+}
+
+TEST(AlgoMinElementTests, MinIterProjectionPredicate)
+{
+  auto sortLess = [](const int lhs, const int rhs) { return lhs < rhs; };
+  auto projInvert = [](const int element) { return -element; };
+
+  std::vector<int> nums = { 4, 2, 1, 3 }; // -4, -2,  -1, -3
+  std::vector<int>::iterator min = autl::MinElementBy(nums.begin(), nums.end(), projInvert, sortLess);
+  EXPECT_EQ(*min, 4);
+
+  int nums2[4] = { 4, 2, 1, 3 };
+  int* min2 = autl::MinElementBy(nums2, nums2 + 4, projInvert, sortLess);
+  EXPECT_EQ(*min2, 4);
+
+  std::span<int> nums3(nums2);
+  std::span<int>::iterator min3 = autl::MinElementBy(nums3.begin(), nums3.end(), projInvert, sortLess);
+  EXPECT_EQ(*min3, 4);
 }
