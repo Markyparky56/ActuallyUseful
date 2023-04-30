@@ -2,6 +2,7 @@ module;
 export module autl.type_traits.rangepointertype;
 
 import autl.utility.declval;
+import autl.types.std;
 
 export namespace autl
 {
@@ -16,7 +17,7 @@ export namespace autl
   * RangePointerType specialisation for single-dimension sized array objects
   * Retrieves the element type, available as ::Type
   */
-  template<typename T, unsigned int N> 
+  template<typename T, size_t N> 
   struct RangePointerType<T[N]> { using Type = T*; };
 
 

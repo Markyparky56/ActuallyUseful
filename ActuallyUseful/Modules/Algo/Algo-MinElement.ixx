@@ -1,6 +1,7 @@
 module;
 export module autl.algo.minelement;
 
+import autl.concepts.supportsbegin;
 import autl.type_traits.rangepointertype;
 import autl.functional.invoke;
 import autl.functional.operators;
@@ -13,6 +14,7 @@ namespace autl
   * Project each element with given projection callable then compare with given predicate callable
   */
   template<typename RangeType, typename ProjectionCallable, typename PredicateCallable>
+    requires SupportsBegin<RangeType>
   RangePointerType_t<RangeType> MinElementByInternal(RangeType& range, ProjectionCallable proj, PredicateCallable pred)
   {
     RangePointerType_t<RangeType> result = nullptr;
@@ -64,16 +66,11 @@ namespace autl
 
 export namespace autl
 {
-  // Concept to restrict pointer returning functions to inputs that implement .begin, 
-  // This stops the compiler trying to deduce the return type with an iterator and breaking compilation
-  template<typename RangeType>
-  concept HasBegin = requires { {Declval<RangeType&>().begin()}; };
-
   /*
   * Returns a pointer to the first minimum element in a range
   */
   template<typename RangeType>
-    requires HasBegin<RangeType>
+    requires SupportsBegin<RangeType>
   auto MinElement(RangeType& range) -> decltype(MinElementByInternal(range, Identity(), Less<>()))
   {
     return MinElementByInternal(range, Identity(), Less<>());
@@ -83,7 +80,7 @@ export namespace autl
   * Returns a pointer to the first minimum element in a range, as determined by the given predicate callable
   */
   template<typename RangeType, typename PredicateCallable>
-    requires HasBegin<RangeType>
+    requires SupportsBegin<RangeType>
   auto MinElement(RangeType& range, PredicateCallable pred) -> decltype(MinElementByInternal(range, Identity(), Move(pred)))
   {
     return MinElementByInternal(range, Identity(), Move(pred));
@@ -93,7 +90,7 @@ export namespace autl
   * Returns a pointer to the first minimum element in a range, projecting the element before comparison with the given projection callable
   */
   template<typename RangeType, typename ProjectionCallable>
-    requires HasBegin<RangeType>
+    requires SupportsBegin<RangeType>
   auto MinElementBy(RangeType& range, ProjectionCallable proj) -> decltype(MinElementByInternal(range, Move(proj), Less<>()))
   {
     return MinElementByInternal(range, Move(proj), Less<>());
@@ -104,7 +101,7 @@ export namespace autl
   * projecting the element before comparison with the given projection callable
   */
   template<typename RangeType, typename ProjectionCallable, typename PredicateCallable>
-    requires HasBegin<RangeType>
+    requires SupportsBegin<RangeType>
   auto MinElementBy(RangeType& range, ProjectionCallable proj, PredicateCallable pred) -> decltype(MinElementByInternal(range, Move(proj), Move(pred)))
   {
     return MinElementByInternal(range, Move(proj), Move(pred));

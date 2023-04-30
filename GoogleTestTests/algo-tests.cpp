@@ -3,6 +3,7 @@
 #include <span>
 
 import autl.algo;
+import autl.utility.begin;
 
 TEST(AlgoTransformTests, TransformIfEven)
 {
@@ -150,10 +151,9 @@ TEST(AlgoMinElementTests, SimpleMinPointer)
   int* min = autl::MinElement(nums);
   EXPECT_EQ(*min, 1);
 
-  // TODO: Need to implement autl::Begin to support bare arrays
-  //int nums2[4] = { 4, 2, 1, 3 };
-  //int* min2 = autl::MinElement(nums2);
-  //EXPECT_EQ(*min2, 1);
+  int nums2[4] = { 4, 2, 1, 3 };
+  int* min2 = autl::MinElement(nums2);
+  EXPECT_EQ(*min2, 1);
 }
 
 TEST(AlgoMinElementTests, MinPointerPredicate)
@@ -162,9 +162,9 @@ TEST(AlgoMinElementTests, MinPointerPredicate)
   int* min = autl::MinElement(nums, [](const int lhs, const int rhs) { return lhs < rhs; });
   EXPECT_EQ(*min, 1);
 
-  //int nums2[4] = { 4, 2, 1, 3 };
-  //int* min2 = autl::MinElement(nums2);
-  //EXPECT_EQ(*min2, 1);
+  int nums2[4] = { 4, 2, 1, 3 };
+  int* min2 = autl::MinElement(nums2);
+  EXPECT_EQ(*min2, 1);
 }
 
 TEST(AlgoMinElementTests, SimpleMinIter)
@@ -174,8 +174,8 @@ TEST(AlgoMinElementTests, SimpleMinIter)
   EXPECT_EQ(*min, 1);
 
   int nums2[4] = { 4, 2, 1, 3 };
-  //int* min2 = autl::MinElement(nums2, nums2 + 4);
-  //EXPECT_EQ(*min2, 1);
+  int* min2 = autl::MinElement(nums2, nums2 + 4);
+  EXPECT_EQ(*min2, 1);
 
   std::span<int> nums3(nums2);
   std::span<int>::iterator min3 = autl::MinElement(nums3.begin(), nums3.end());
