@@ -360,5 +360,8 @@
     <ClCompile Include="Modules\Concepts\Concepts-SupportsBegin.ixx">
       <Filter>Modules\Concepts</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\Algo\Algo-MaxElement.ixx">
+      <Filter>Modules\Algo</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

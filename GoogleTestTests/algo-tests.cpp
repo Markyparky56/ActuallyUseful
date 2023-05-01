@@ -262,3 +262,121 @@ TEST(AlgoMinElementTests, MinIterProjectionPredicate)
   std::span<int>::iterator min3 = autl::MinElementBy(nums3.begin(), nums3.end(), projInvert, sortLess);
   EXPECT_EQ(*min3, 4);
 }
+
+TEST(AlgoMaxElementTests, SimpleMaxPointer)
+{
+  std::vector<int> nums = { 1, 2, 3, 4 };
+  int* max = autl::MaxElement(nums);
+  EXPECT_EQ(*max, 4);
+
+  int nums2[4] = { 1, 2, 3, 4 };
+  int* max2 = autl::MaxElement(nums2);
+  EXPECT_EQ(*max2, 4);
+}
+
+TEST(AlgoMaxElementTests, MaxPointerPredicate)
+{
+  auto sortLess = [](const int lhs, const int rhs) { return lhs < rhs; };
+
+  std::vector<int> nums = { 1, 2, 3, 4 };
+  int* max = autl::MaxElement(nums, sortLess);
+  EXPECT_EQ(*max, 4);
+
+  int nums2[4] = { 1, 2, 3, 4 };
+  int* max2 = autl::MaxElement(nums2, sortLess);
+  EXPECT_EQ(*max2, 4);
+}
+
+TEST(AlgoMaxElementTests, MaxPointerProjection)
+{
+  auto projInvert = [](const int element) { return -element; };
+
+  std::vector<int> nums = { 1, 2, 3, 4 };
+  int* max = autl::MaxElementBy(nums, projInvert);
+  EXPECT_EQ(*max, 1);
+
+  int nums2[4] = { 1, 2, 3, 4 };
+  int* max2 = autl::MaxElementBy(nums2, projInvert);
+  EXPECT_EQ(*max2, 1);
+}
+
+TEST(AlgoMaxElementTests, MaxPointerProjectionPredicate)
+{
+  auto sortLess = [](const int lhs, const int rhs) { return lhs < rhs; };
+  auto projInvert = [](const int element) { return -element; };
+
+  std::vector<int> nums = { 1, 2, 3, 4 };
+  int* max = autl::MaxElementBy(nums, projInvert, sortLess);
+  EXPECT_EQ(*max, 1);
+
+  int nums2[4] = { 1, 2, 3, 4 };
+  int* max2 = autl::MaxElementBy(nums2, projInvert, sortLess);
+  EXPECT_EQ(*max2, 1);
+}
+
+TEST(AlgoMaxElementTests, SimpleMaxIter)
+{
+  std::vector<int> nums = { 1, 2, 3, 4 };
+  std::vector<int>::iterator max = autl::MaxElement(nums.begin(), nums.end());
+  EXPECT_EQ(*max, 4);
+
+  int nums2[4] = { 1, 2, 3, 4 };
+  int* max2 = autl::MaxElement(nums2, nums2 + 4);
+  EXPECT_EQ(*max2, 4);
+
+  std::span<int> nums3(nums2);
+  std::span<int>::iterator max3 = autl::MaxElement(nums3.begin(), nums3.end());
+  EXPECT_EQ(*max3, 4);
+}
+
+TEST(AlgoMaxElementTests, MaxIterPredicate)
+{
+  auto sortLess = [](const int lhs, const int rhs) { return lhs < rhs; };
+
+  std::vector<int> nums = { 1, 2, 3, 4 };
+  std::vector<int>::iterator max = autl::MaxElement(nums.begin(), nums.end(), sortLess);
+  EXPECT_EQ(*max, 4);
+
+  int nums2[4] = { 1, 2, 3, 4 };
+  int* max2 = autl::MaxElement(nums2, nums2 + 4, sortLess);
+  EXPECT_EQ(*max2, 4);
+
+  std::span<int> nums3(nums2);
+  std::span<int>::iterator max3 = autl::MaxElement(nums3.begin(), nums3.end(), sortLess);
+  EXPECT_EQ(*max3, 4);
+}
+
+TEST(AlgoMaxElementTests, MaxIterProjection)
+{
+  auto projInvert = [](const int element) { return -element; };
+
+  std::vector<int> nums = { 1, 2, 3, 4 };
+  std::vector<int>::iterator max = autl::MaxElementBy(nums.begin(), nums.end(), projInvert);
+  EXPECT_EQ(*max, 1);
+
+  int nums2[4] = { 1, 2, 3, 4 };
+  int* max2 = autl::MaxElementBy(nums2, nums2 + 4, projInvert);
+  EXPECT_EQ(*max2, 1);
+
+  std::span<int> nums3(nums2);
+  std::span<int>::iterator max3 = autl::MaxElementBy(nums3.begin(), nums3.end(), projInvert);
+  EXPECT_EQ(*max3, 1);
+}
+
+TEST(AlgoMaxElementTests, MaxIterProjectionPredicate)
+{
+  auto sortLess = [](const int lhs, const int rhs) { return lhs < rhs; };
+  auto projInvert = [](const int element) { return -element; };
+
+  std::vector<int> nums = { 1, 2, 3, 4 };
+  std::vector<int>::iterator max = autl::MaxElementBy(nums.begin(), nums.end(), projInvert, sortLess);
+  EXPECT_EQ(*max, 1);
+
+  int nums2[4] = { 1, 2, 3, 4 };
+  int* max2 = autl::MaxElementBy(nums2, nums2 + 4, projInvert, sortLess);
+  EXPECT_EQ(*max2, 1);
+
+  std::span<int> nums3(nums2);
+  std::span<int>::iterator max3 = autl::MaxElementBy(nums3.begin(), nums3.end(), projInvert, sortLess);
+  EXPECT_EQ(*max3, 1);
+}

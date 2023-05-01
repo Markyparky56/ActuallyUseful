@@ -68,6 +68,7 @@ export namespace autl
 {
   /*
   * Returns a pointer to the first minimum element in a range
+  * Element is expected to implement the < operator for comparison
   */
   template<typename RangeType>
     requires SupportsBegin<RangeType>
@@ -88,6 +89,7 @@ export namespace autl
 
   /*
   * Returns a pointer to the first minimum element in a range, projecting the element before comparison with the given projection callable
+  * Element is expected to implement the < operator for comparison
   */
   template<typename RangeType, typename ProjectionCallable>
     requires SupportsBegin<RangeType>
@@ -109,6 +111,7 @@ export namespace autl
 
   /*
   * Returns an iterator to the first minimum element in a range
+  * Element is expected to implement the < operator for comparison
   */
   template<typename IteratorType>
   [[nodiscard]] constexpr auto MinElement(IteratorType first, IteratorType last) -> decltype(MinElementByInternal(Move(first), Move(last), Identity(), Less<>()))
@@ -127,6 +130,7 @@ export namespace autl
 
   /*
   * Returns an iterator to the first minimum element in a range, projecting the element before comparison with the given projection callable
+  * Element is expected to implement the < operator for comparison
   */
   template<typename IteratorType, typename ProjectionCallable>
   [[nodiscard]] constexpr auto MinElementBy(IteratorType first, IteratorType last, ProjectionCallable proj) -> decltype(MinElementByInternal(Move(first), Move(last), Move(proj), Less<>()))
