@@ -62,7 +62,7 @@ TEST(Concepts, TotallyOrdered)
 {
   constexpr bool intTotallyOrdered = autl::TotallyOrdered<int>;
   EXPECT_TRUE(intTotallyOrdered);
-  // static_assert(intTotallyOrdered); // fails in Release?
+  static_assert(intTotallyOrdered); // fails in Release?
 }
 
 TEST(Concepts, CommonWith)
@@ -86,7 +86,7 @@ TEST(Concepts, TotallyOrderedWithAB)
   constexpr bool totallyOrderedWithAB = autl::TotallyOrderedWith<int, IntComparable>;
   constexpr bool totallyOrderedWithAB2 = std::totally_ordered_with<int, IntComparable>;
   EXPECT_TRUE(totallyOrderedWithAB);
-  // static_assert(totallyOrderedWithAB); // Intellisense reports false, compiler passes debug, fails release
+  static_assert(totallyOrderedWithAB); // Intellisense reports false, compiler passes (debug & release)
 }
 
 TEST(Concepts, TotallyOrderedWithBA)
@@ -94,7 +94,7 @@ TEST(Concepts, TotallyOrderedWithBA)
   constexpr bool totallyOrderedWithBA = autl::TotallyOrderedWith<IntComparable, int>;
   constexpr bool totallyOrderedWithBA2 = std::totally_ordered_with<IntComparable, int>;
   EXPECT_TRUE(totallyOrderedWithBA);
-  // static_assert(totallyOrderedWithBA); // Intellisense reports false, compiler passes debug, fails release
+  static_assert(totallyOrderedWithBA); // Intellisense reports false, compiler passes (debug & release)
 }
 
 TEST(Concepts, WeaklyEqualityComparableWith)
@@ -102,7 +102,7 @@ TEST(Concepts, WeaklyEqualityComparableWith)
   constexpr bool weaklyComparableWith = autl::WeaklyEqualityComparableWith<int, int>;
   constexpr bool weaklyComparableWith2 = std::_Weakly_equality_comparable_with<int, int>;
   EXPECT_TRUE(weaklyComparableWith);
-  // static_assert(weaklyComparableWith); // Intellisense reports true, compiler passes debug, fails release
+  static_assert(weaklyComparableWith); // Intellisense reports true, compiler passes (debug & release)
 }
 
 TEST(Concepts, EqualityComparable)
@@ -110,7 +110,7 @@ TEST(Concepts, EqualityComparable)
   constexpr bool equalityComparable = autl::EqualityComparable<int>;
   constexpr bool equalityComparable2 = std::equality_comparable<int>;
   EXPECT_TRUE(equalityComparable);
-  // static_assert(equalityComparable); // Intellisense reports true, compiler passes debug, fails release
+  static_assert(equalityComparable); // Intellisense reports true, compiler passes (debug & release)
 }
 
 TEST(Concepts, EqualityComparableWith)
@@ -118,15 +118,15 @@ TEST(Concepts, EqualityComparableWith)
   constexpr bool equalityComparableWith_intint = autl::EqualityComparableWith<int, int>;
   constexpr bool equalityComparableWith_intint2 = std::equality_comparable_with<int, int>;
   EXPECT_TRUE(equalityComparableWith_intint);
-  // static_assert(equalityComparableWith_intint); // Intellisense reports false, compiler passes debug, fails release
+  static_assert(equalityComparableWith_intint); // Intellisense reports false, compiler passes (debug & release)
 
   constexpr bool equalityComparableWith_intintcomparable = autl::EqualityComparableWith<int, IntComparable>;
   constexpr bool equalityComparableWith_intintcomparable2 = std::equality_comparable_with<int, IntComparable>;
   EXPECT_TRUE(equalityComparableWith_intint);
-  // static_assert(equalityComparableWith_intintcomparable); // Intellisense reports false, compiler passes debug, fails release
+  static_assert(equalityComparableWith_intintcomparable); // Intellisense reports false, compiler passes (debug & release)
 
   constexpr bool equalityComparableWith_intintcomparable_ref= autl::EqualityComparableWith<int&, IntComparable&>;
   constexpr bool equalityComparableWith_intintcomparable_ref2 = std::equality_comparable_with<int&, IntComparable&>;
   EXPECT_TRUE(equalityComparableWith_intintcomparable_ref);
-  // static_assert(equalityComparableWith_intintcomparable_ref); // Intellisense reports false, compiler passes debug, fails release
+  static_assert(equalityComparableWith_intintcomparable_ref); // Intellisense reports false, compiler passes (debug & release)
 }
