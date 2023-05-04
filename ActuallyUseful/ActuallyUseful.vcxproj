@@ -173,8 +173,9 @@
     <ClCompile Include="Modules\Functional\Functional.ixx" />
     <ClCompile Include="Modules\Internal\Internal-Invoker.h">
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsHeaderUnit</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCppModuleInternalPartition</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsHeaderUnit</CompileAs>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/internalPartition %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/internalPartition %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ClCompile Include="Modules\Limits\Limits-Floats.ixx" />
     <ClCompile Include="Modules\Limits\Limits-Ints.ixx" />
@@ -255,8 +256,9 @@
   <ItemGroup>
     <ClCompile Include="Modules\Internal\Internal-BooleanTestable.h">
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsHeaderUnit</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCppModuleInternalPartition</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsHeaderUnit</CompileAs>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/internalPartition %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/internalPartition %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
