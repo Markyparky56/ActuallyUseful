@@ -380,3 +380,85 @@ TEST(AlgoMaxElementTests, MaxIterProjectionPredicate)
   std::span<int>::iterator max3 = autl::MaxElementBy(nums3.begin(), nums3.end(), projInvert, sortLess);
   EXPECT_EQ(*max3, 1);
 }
+
+TEST(AlgoIndexOfTests, ValidIndex)
+{
+  int nums[4] = {42, 123, 316, 1013};
+  autl::size_t idx = autl::IndexOf(nums, 316);
+  EXPECT_EQ(idx, 2);
+
+  // Only valid std container that passes ContiguousRange for the moment
+  // std::ranges has a ContiguousRange concept that works via iterators that should probably be integrated
+  std::initializer_list<int> nums2{ 42, 123, 316, 1013 };
+  autl::size_t idx2 = autl::IndexOf(nums2, 316);
+  EXPECT_EQ(idx, 2);
+}
+
+TEST(AlgoIndexOfTests, InvalidIndex)
+{
+  int nums[4] = { 42, 123, 316, 1013 };
+  autl::size_t idx = autl::IndexOf(nums, -100);
+  EXPECT_EQ(idx, -1);
+
+  // Only valid std container that passes ContiguousRange for the moment
+  // std::ranges has a ContiguousRange concept that works via iterators that should probably be integrated
+  std::initializer_list<int> nums2{ 42, 123, 316, 1013 };
+  autl::size_t idx2 = autl::IndexOf(nums2, -100);
+  EXPECT_EQ(idx, -1);
+}
+
+TEST(AlgoIndexOfTests, ValidIndexProjection)
+{
+  int nums[4] = { 42, 123, 316, 1013 };
+  autl::size_t idx = autl::IndexOf(nums, 316);
+  EXPECT_EQ(idx, 2);
+
+  // Only valid std container that passes ContiguousRange for the moment
+  // std::ranges has a ContiguousRange concept that works via iterators that should probably be integrated
+  std::initializer_list<int> nums2{ 42, 123, 316, 1013 };
+  autl::size_t idx2 = autl::IndexOf(nums2, 316);
+  EXPECT_EQ(idx, 2);
+}
+
+TEST(AlgoIndexOfTests, InvalidIndexProjection)
+{
+  int nums[4] = { 42, 123, 316, 1013 };
+  autl::size_t idx = autl::IndexOf(nums, -100);
+  EXPECT_EQ(idx, -1);
+
+  // Only valid std container that passes ContiguousRange for the moment
+  // std::ranges has a ContiguousRange concept that works via iterators that should probably be integrated
+  std::initializer_list<int> nums2{ 42, 123, 316, 1013 };
+  autl::size_t idx2 = autl::IndexOf(nums2, -100);
+  EXPECT_EQ(idx, -1);
+}
+
+TEST(AlgoIndexOfTests, ValidIndexByPredicate)
+{
+  auto pred = [](const int element) { return element % 2 != 0; }; // First odd
+
+  int nums[4] = { 42, 123, 316, 1013 };
+  autl::size_t idx = autl::IndexOfByPredicate(nums, pred);
+  EXPECT_EQ(idx, 1);
+
+  // Only valid std container that passes ContiguousRange for the moment
+  // std::ranges has a ContiguousRange concept that works via iterators that should probably be integrated
+  std::initializer_list<int> nums2{ 42, 123, 316, 1013 };
+  autl::size_t idx2 = autl::IndexOfByPredicate(nums2, pred);
+  EXPECT_EQ(idx, 1);
+}
+
+TEST(AlgoIndexOfTests, InvalidIndexByPredicate)
+{
+  auto pred = [](const int element) { return element == 0; };
+
+  int nums[4] = { 42, 123, 316, 1013 };
+  autl::size_t idx = autl::IndexOfByPredicate(nums, pred);
+  EXPECT_EQ(idx, -1);
+
+  // Only valid std container that passes ContiguousRange for the moment
+  // std::ranges has a ContiguousRange concept that works via iterators that should probably be integrated
+  std::initializer_list<int> nums2{ 42, 123, 316, 1013 };
+  autl::size_t idx2 = autl::IndexOfByPredicate(nums2, pred);
+  EXPECT_EQ(idx, -1);
+}

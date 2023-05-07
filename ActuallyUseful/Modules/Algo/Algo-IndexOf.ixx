@@ -2,6 +2,8 @@ module;
 export module autl.algo.indexof;
 
 import autl.concepts.contiguousrange;
+import autl.concepts.supportsgetdata;
+import autl.concepts.supportsgetnum;
 import autl.functional.invoke;
 import autl.functional.operators;
 import autl.utility.getdata;
@@ -15,9 +17,16 @@ namespace autl
   // with the data type inside RangeType, but I don't see a clean way of getting the Type at the template level
   // without imposing some form of getter or overloading the function for different range types
 
+  template<typename RangeType>
+  concept IndexOfCompatibleRange =
+    ContiguousRange<RangeType>
+    && SupportsGetNum<RangeType>
+    && SupportsGetData<RangeType>;
+
   template<typename RangeType, typename ValueType, typename ProjectionCallable>
-    requires ContiguousRange<RangeType> 
-  auto IndexOfBy_Internal(RangeType&& range, const ValueType& value, ProjectionCallable proj)
+    requires IndexOfCompatibleRange<RangeType>
+  [[nodiscard]] constexpr auto IndexOfBy_Internal(RangeType& range, const ValueType& value, ProjectionCallable proj)
+    -> decltype(GetNum(range))
   {
     auto num = GetNum(range);
     auto data = GetData(range);
@@ -33,12 +42,13 @@ namespace autl
     }
 
     // -1 as INDEX_NONE
-    return static_cast<decltype(num)>(-1);
+    return static_cast<it>(-1);
   }
 
   template<typename RangeType, typename PredicateCallable>
-    requires ContiguousRange<RangeType>
-  auto IndexOfByPredicate_Internal(RangeType&& range, PredicateCallable pred)
+    requires IndexOfCompatibleRange<RangeType>
+  [[nodiscard]] constexpr auto IndexOfByPredicate_Internal(RangeType& range, PredicateCallable pred)
+    -> decltype(GetNum(range))
   {
     auto num = GetNum(range);
     auto data = GetData(range);
@@ -54,7 +64,7 @@ namespace autl
     }
 
     // -1 as INDEX_NONE
-    return static_cast<decltype(num)>(-1);
+    return static_cast<it>(-1);
   }
 }
 
@@ -65,10 +75,11 @@ export namespace autl
   * Returns -1 (INDEX_NONE) if no match found
   */
   template<typename RangeType, typename ValueType>
-    requires ContiguousRange<RangeType>
-  auto IndexOf(RangeType&& range, const ValueType& value)
+    requires IndexOfCompatibleRange<RangeType>
+  [[nodiscard]] constexpr auto IndexOf(RangeType& range, const ValueType& value) 
+    -> decltype(IndexOfBy_Internal(range, value, Identity()))
   {
-    return IndexOfBy_Internal(Forward<RangeType>(range), value, Identity());
+    return IndexOfBy_Internal(range, value, Identity());
   }
 
   /*
@@ -76,10 +87,11 @@ export namespace autl
   * Returns -1 (INDEX_NONE) if no match found
   */
   template<typename RangeType, typename ValueType, typename ProjectionCallable>
-    requires ContiguousRange<RangeType>
-  auto IndexOfBy(RangeType&& range, const ValueType& value, ProjectionCallable proj)
+    requires IndexOfCompatibleRange<RangeType>
+  [[nodiscard]] constexpr auto IndexOfBy(RangeType& range, const ValueType& value, ProjectionCallable proj) 
+    -> decltype(IndexOfBy_Internal(range, value, Move(proj)))
   {
-    return IndexOfBy_Internal(Forward<RangeType>(range), value, Move(proj));
+    return IndexOfBy_Internal(range, value, Move(proj));
   }
 
   /*
@@ -87,9 +99,10 @@ export namespace autl
   * Returns -1 (INDEX_NONE) if no match found
   */
   template<typename RangeType, typename PredicateCallable>
-    requires ContiguousRange<RangeType>
-  auto IndexOfByPredicate(RangeType&& range, PredicateCallable pred)
+    requires IndexOfCompatibleRange<RangeType>
+  [[nodiscard]] constexpr auto IndexOfByPredicate(RangeType& range, PredicateCallable pred) 
+    -> decltype(IndexOfByPredicate_Internal(range, Move(pred)))
   {
-    return IndexOfByPredicate_Internal(Forward<RangeType>(range), Move(pred));
+    return IndexOfByPredicate_Internal(range, Move(pred));
   }
 }

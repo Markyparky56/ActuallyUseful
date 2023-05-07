@@ -7,3 +7,4 @@ export import autl.algo.noneof;
 export import autl.algo.anyof;
 export import autl.algo.minelement;
 export import autl.algo.maxelement;
+export import autl.algo.indexof;
