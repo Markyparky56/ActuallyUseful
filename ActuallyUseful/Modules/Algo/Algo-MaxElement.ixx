@@ -73,7 +73,8 @@ export namespace autl
   */
   template<typename RangeType>
     requires SupportsBegin<RangeType>
-  [[nodiscard]] constexpr auto MaxElement(RangeType& range) -> decltype(MaxElementByInternal(range, Identity(), Less<>()))
+  [[nodiscard]] constexpr auto MaxElement(RangeType& range) 
+    -> decltype(MaxElementByInternal(range, Identity(), Less<>()))
   {
     return MaxElementByInternal(range, Identity(), Less<>());
   }
@@ -83,7 +84,8 @@ export namespace autl
   */
   template<typename RangeType, typename PredicateCallable>
     requires SupportsBegin<RangeType>
-  [[nodiscard]] constexpr auto MaxElement(RangeType& range, PredicateCallable pred) -> decltype(MaxElementByInternal(range, Identity(), Move(pred)))
+  [[nodiscard]] constexpr auto MaxElement(RangeType& range, PredicateCallable pred) 
+    -> decltype(MaxElementByInternal(range, Identity(), Move(pred)))
   {
     return MaxElementByInternal(range, Identity(), Move(pred));
   }
@@ -94,7 +96,8 @@ export namespace autl
   */
   template<typename RangeType, typename ProjectionCallable>
     requires SupportsBegin<RangeType>
-  [[nodiscard]] constexpr auto MaxElementBy(RangeType& range, ProjectionCallable proj) -> decltype(MaxElementByInternal(range, Move(proj), Less<>()))
+  [[nodiscard]] constexpr auto MaxElementBy(RangeType& range, ProjectionCallable proj) 
+    -> decltype(MaxElementByInternal(range, Move(proj), Less<>()))
   {
     return MaxElementByInternal(range, Move(proj), Less<>());
   }
@@ -105,7 +108,8 @@ export namespace autl
   */
   template<typename RangeType, typename ProjectionCallable, typename PredicateCallable>
     requires SupportsBegin<RangeType>
-  [[nodiscard]] constexpr auto MaxElementBy(RangeType& range, ProjectionCallable proj, PredicateCallable pred) -> decltype(MaxElementByInternal(range, Move(proj), Move(pred)))
+  [[nodiscard]] constexpr auto MaxElementBy(RangeType& range, ProjectionCallable proj, PredicateCallable pred) 
+    -> decltype(MaxElementByInternal(range, Move(proj), Move(pred)))
   {
     return MaxElementByInternal(range, Move(proj), Move(pred));
   }
@@ -114,7 +118,8 @@ export namespace autl
   * Returns an iterator to the first maximum element in a range
   */
   template<typename IteratorType>
-  [[nodiscard]] constexpr auto MaxElement(IteratorType first, IteratorType last) -> decltype(MaxElementByInternal(first, last, Identity(), Less<>()))
+  [[nodiscard]] constexpr auto MaxElement(IteratorType first, IteratorType last) 
+    -> decltype(MaxElementByInternal(first, last, Identity(), Less<>()))
   {
     return MaxElementByInternal(first, last, Identity(), Less<>());
   }
@@ -123,7 +128,8 @@ export namespace autl
   * Returns an iterator to the first maximum element in a range, as determined by the given predicate callable
   */
   template<typename IteratorType, typename PredicateCallable>
-  [[nodiscard]] constexpr auto MaxElement(IteratorType first, IteratorType last, PredicateCallable pred) -> decltype(MaxElementByInternal(first, last, Identity(), Move(pred)))
+  [[nodiscard]] constexpr auto MaxElement(IteratorType first, IteratorType last, PredicateCallable pred) 
+    -> decltype(MaxElementByInternal(first, last, Identity(), Move(pred)))
   {
     return MaxElementByInternal(first, last, Identity(), Move(pred));
   }
@@ -133,7 +139,8 @@ export namespace autl
   * Element is expected to implement the < operator for comparison
   */
   template<typename IteratorType, typename ProjectionCallable>
-  [[nodiscard]] constexpr auto MaxElementBy(IteratorType first, IteratorType last, ProjectionCallable proj) -> decltype(MaxElementByInternal(first, last, Move(proj), Less<>()))
+  [[nodiscard]] constexpr auto MaxElementBy(IteratorType first, IteratorType last, ProjectionCallable proj) 
+    -> decltype(MaxElementByInternal(first, last, Move(proj), Less<>()))
   {
     return MaxElementByInternal(first, last, Move(proj), Less<>());
   }
@@ -143,7 +150,8 @@ export namespace autl
   * projecting the element before comparison with the given projection callable
   */
   template<typename IteratorType, typename ProjectionCallable, typename PredicateCallable>
-  [[nodiscard]] constexpr auto MaxElementBy(IteratorType first, IteratorType last, ProjectionCallable proj, PredicateCallable pred) -> decltype(MaxElementByInternal(first, last, Move(proj), Move(pred)))
+  [[nodiscard]] constexpr auto MaxElementBy(IteratorType first, IteratorType last, ProjectionCallable proj, PredicateCallable pred) 
+    -> decltype(MaxElementByInternal(first, last, Move(proj), Move(pred)))
   {
     return MaxElementByInternal(first, last, Move(proj), Move(pred));
   }

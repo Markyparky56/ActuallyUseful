@@ -30,7 +30,6 @@ export namespace autl
   template<typename T, size_t N> struct IsContiguous<volatile T[N]> : TrueType {};
   template<typename T, size_t N> struct IsContiguous<const volatile T[N]> : TrueType {};
 
-
   /*
   * Determine if T is contiguous, meaning there are breaks in it's range
   * Requires [0..N) is valid

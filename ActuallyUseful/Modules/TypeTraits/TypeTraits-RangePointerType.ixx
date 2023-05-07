@@ -1,6 +1,7 @@
 module;
 export module autl.type_traits.rangepointertype;
 
+import autl.concepts.supportsbegin;
 import autl.utility.declval;
 import autl.types.std;
 
@@ -11,6 +12,7 @@ export namespace autl
   * Expects RangeType to implement .begin()
   */
   template<typename RangeType>
+    requires SupportsBegin<RangeType>
   struct RangePointerType { using Type = decltype(&*Declval<RangeType&>().begin()); };
 
   /*
