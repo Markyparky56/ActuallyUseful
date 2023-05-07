@@ -7,7 +7,7 @@ import autl.utility.begin;
 export namespace autl
 {
   /*
-  * Require the given container to support autl::Begin
+  * Require the given range to support autl::Begin
   */
   template<typename RangeType>
   concept SupportsBegin = requires

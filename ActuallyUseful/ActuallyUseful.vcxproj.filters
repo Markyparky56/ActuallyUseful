@@ -363,5 +363,17 @@
     <ClCompile Include="Modules\Algo\Algo-MaxElement.ixx">
       <Filter>Modules\Algo</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\Concepts\Concepts-SupportsGetNum.ixx">
+      <Filter>Modules\Concepts</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Concepts\Concepts-SupportsGetData.ixx">
+      <Filter>Modules\Concepts</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Utility\Utility-End.ixx">
+      <Filter>Modules\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Concepts\Concepts-SupportsEnd.ixx">
+      <Filter>Modules\Concepts</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
